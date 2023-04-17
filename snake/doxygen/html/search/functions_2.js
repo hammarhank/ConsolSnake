@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['decaysnake_0',['decaySnake',['../class_console_app1_1_1_program_1_1_cell.html#aa9bdb53c2c396dc16fa1adce2f083c43',1,'ConsoleApp1::Program::Cell']]],
-  ['doinput_1',['doInput',['../class_console_app1_1_1_program.html#a66cf10101fee7894fe5f0fdf2a6fc72c',1,'ConsoleApp1::Program']]]
+  ['decaysnake_0',['decaySnake',['../class_snake_1_1_program_1_1_cell.html#a5dfc2ff332bfce0d4d896f61c08acfde',1,'Snake::Program::Cell']]],
+  ['doinput_1',['doInput',['../class_snake_1_1_program.html#a30e865c7317d7d5204544a4a9d953fab',1,'Snake::Program']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['food_0',['food',['../class_console_app1_1_1_program.html#aa16eabc258256b72bbc06dbf7aa31b60',1,'ConsoleApp1::Program']]],
-  ['foodcount_1',['FoodCount',['../class_console_app1_1_1_program.html#a4817dca99c9e1498a162f9cf7c6e7f1b',1,'ConsoleApp1::Program']]]
+  ['food_0',['food',['../class_snake_1_1_program.html#a4c19189e57d5831883ae247ac3ba89eb',1,'Snake::Program']]],
+  ['foodcount_1',['FoodCount',['../class_snake_1_1_program.html#af541694189887d2457169b5c56e2ed1d',1,'Snake::Program']]]
 ];
