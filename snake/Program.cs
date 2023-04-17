@@ -84,10 +84,13 @@ namespace ConsoleApp1
 
         static void Lose()
         {
-            Console.WriteLine("\n You lose!");
-            Thread.Sleep(1000);
-            Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Environment.Exit(-1);
+            Console.Clear();
+            string s = "You lost!!!";
+            Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.WindowHeight / 2);
+
+            Console.WriteLine(s);
+            Thread.Sleep(3000);
+            Main(new string[0]);
         }
 
         static void doInput(char inp)
