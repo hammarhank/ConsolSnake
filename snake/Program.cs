@@ -1,7 +1,11 @@
-﻿/// <summary>
-/// Snake är ett enkelt konsolspel där spelaren styr en orm som rör sig över en rutnät.
-/// </summary>
-namespace Snake
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
 {
     /// <summary>
     /// Program-klassen innehåller huvudmetoden och spelets logik.
@@ -37,10 +41,7 @@ namespace Snake
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
         static int direction; //0=Up 1=Right 2=Down 3=Left
-        /// <summary>
-        /// Ormens hastighet.
-        /// </summary>
-        static readonly int speed = 100;
+        static readonly int speed = 1;
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -61,6 +62,24 @@ namespace Snake
 
         static void Main(string[] args)
         {
+            string[] options = { "Start", "New", "Load", "Save",
+            "Highscore", "Foo", "Bar", "FooBar", "etc." };
+            int selectedIndex = MenuHelper.MultipleChoice(true, options);
+
+            Console.Clear();
+
+            string command = options[selectedIndex];
+
+            if (command == options[0])
+            {
+                Start();
+            }
+        }
+        /// <summary>
+        /// Startar spelet
+        /// </summary>
+        static void Start()
+        {
             if (!Populated)
             {
                 FoodCount = 0;
@@ -77,9 +96,7 @@ namespace Snake
                 Restart();
             }
         }
-        /// <summary>
-        /// Återstartar spelet och uppdaterar skärmen.
-        /// </summary>
+
         static void Restart()
         {
             Console.SetCursorPosition(0, 0);
