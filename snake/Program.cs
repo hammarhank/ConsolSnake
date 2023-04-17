@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace ConsoleApp1
 {
     class Program
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         static readonly int gridW = 90;
         static readonly int gridH = 25;
         static Cell[,] grid = new Cell[gridH, gridW];
