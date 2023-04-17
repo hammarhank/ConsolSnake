@@ -1,6 +1,10 @@
-﻿/// <summary>
-/// Snake är ett enkelt konsolspel där spelaren styr en orm som rör sig över en rutnät.
-/// </summary>
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Snake
 {
     /// <summary>
@@ -37,9 +41,6 @@ namespace Snake
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
         static int direction; //0=Up 1=Right 2=Down 3=Left
-        /// <summary>
-        /// Ormens hastighet.
-        /// </summary>
         static readonly int speed = 1;
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
@@ -61,6 +62,24 @@ namespace Snake
 
         static void Main(string[] args)
         {
+            string[] options = { "Start", "New", "Load", "Save",
+            "Highscore", "Foo", "Bar", "FooBar", "etc." };
+            int selectedIndex = MenuHelper.MultipleChoice(true, options);
+
+            Console.Clear();
+
+            string command = options[selectedIndex];
+
+            if (command == options[0])
+            {
+                Start();
+            }
+        }
+        /// <summary>
+        /// Startar spelet
+        /// </summary>
+        static void Start()
+        {
             if (!Populated)
             {
                 FoodCount = 0;
@@ -77,9 +96,7 @@ namespace Snake
                 Restart();
             }
         }
-        /// <summary>
-        /// Återstartar spelet och uppdaterar skärmen.
-        /// </summary>
+
         static void Restart()
         {
             Console.SetCursorPosition(0, 0);
@@ -133,11 +150,28 @@ namespace Snake
         static void Lose()
         {
             Console.Clear();
-            string s = "You lost!!!";
-            Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.WindowHeight / 2);
+            var list = new List<string>()
+            {
+            @" $$$$$$\                                                                                  ",
+            @"$$  __$$\                                                                                 ",
+            @"$$ /  \__| $$$$$$\  $$$$$$\$$$$\   $$$$$$\         $$$$$$\ $$\    $$\  $$$$$$\   $$$$$$\  ",
+            @"$$ |$$$$\  \____$$\ $$  _$$  _$$\ $$  __$$\       $$  __$$\\$$\  $$  |$$  __$$\ $$  __$$\ ",
+            @"$$ |\_$$ | $$$$$$$ |$$ / $$ / $$ |$$$$$$$$ |      $$ /  $$ |\$$\$$  / $$$$$$$$ |$$ |  \__|",
+            @"$$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$   ____|      $$ |  $$ | \$$$  /  $$   ____|$$ |      ",
+            @"\$$$$$$  |\$$$$$$$ |$$ | $$ | $$ |\$$$$$$$\       \$$$$$$  |  \$  /   \$$$$$$$\ $$ |      ",
+            @" \______/  \_______|\__| \__| \__| \_______|       \______/    \_/     \_______|\__|      ",
+            };
 
-            Console.WriteLine(s);
+            Console.CursorVisible = false;
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth - list[i].Length) / 2, ((Console.WindowHeight - (list.Count)) / 2) + i);
+                Console.WriteLine(list[i]);
+            }
+
             Thread.Sleep(3000);
+            Console.CursorVisible = true;
+            Console.Clear();
 
             Populated = false;
             Lost = false;
@@ -269,7 +303,7 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 100);
+            Thread.Sleep(speed * 1);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
