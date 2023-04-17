@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Snake
 {
@@ -68,6 +69,7 @@ namespace Snake
 
             Console.Clear();
 
+            // FIXME: Om man trycker på ecape i menyn kastas IndexOutOfRangeException
             string command = options[selectedIndex];
 
             if (command == options[0])
