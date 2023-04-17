@@ -1,0 +1,256 @@
+\hypertarget{class_console_app1_1_1_program}{}\doxysection{Console\+App1.\+Program Class Reference}
+\label{class_console_app1_1_1_program}\index{ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_ae6cedb55c6b52f4193827df8c1cf88cc}{Main}} (string\mbox{[}$\,$\mbox{]} args)
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a4424e82fa894c78e6c9693d7caf1bbfc}{Restart}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a02e35bebcaf2d16f0b3baeb3a59e5dcc}{update\+Screen}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a9a2d1fc16219bdfaa4105f24af5dc2dc}{get\+Input}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_ad1ce8e417e47e9c2113d5913f574e4d9}{check\+Cell}} (\mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} cell)
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_ac2692635719921e7d44a468a6a1ad5ff}{Lose}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a66cf10101fee7894fe5f0fdf2a6fc72c}{do\+Input}} (char inp)
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a821a001e9e4e081487120924421fb71e}{add\+Food}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_abfb3ca9ce15e3b7ca51ff62fd14f765c}{eat\+Food}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_aed2b39bab0e98efb0530e790997a0d32}{go\+Up}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a3ac0bbdb6a8d8832d646fb1b66bf188c}{go\+Right}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_aabe6b2b18b447c1ce03a8d3ba593c76b}{go\+Down}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_aa3e59472abd2f1d9e45e59eacd0280f5}{go\+Left}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a2d303632ad3a6155d26d259ac797200e}{Move}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_aed58d82ef4cfdfb538d4530fa775491a}{visit\+Cell}} (\mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} cell)
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a8e4f38ecd8f0c9546cf72f8687c43ef8}{update\+Pos}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a35abe27c835a726a87eb07d49bf8bdf8}{populate\+Grid}} ()
+\item 
+static void \mbox{\hyperlink{class_console_app1_1_1_program_a12878557b5b4062a2888ebc9d16d1bbf}{print\+Grid}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly int \mbox{\hyperlink{class_console_app1_1_1_program_a1fd7bd773a135929eb29924fd11423ed}{gridW}} = 90
+\item 
+static readonly int \mbox{\hyperlink{class_console_app1_1_1_program_a792b906ba8f79a01a18364a4906835ce}{gridH}} = 25
+\item 
+static \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} \mbox{\hyperlink{class_console_app1_1_1_program_a3f63998eb8d4bcb7bc7be116c8229872}{grid}} = new \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}\mbox{[}\mbox{\hyperlink{class_console_app1_1_1_program_a792b906ba8f79a01a18364a4906835ce}{gridH}}, \mbox{\hyperlink{class_console_app1_1_1_program_a1fd7bd773a135929eb29924fd11423ed}{gridW}}\mbox{]}
+\item 
+static \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} \mbox{\hyperlink{class_console_app1_1_1_program_ae7ea8ebe5d970eee2afe9bb91b422f0d}{current\+Cell}}
+\item 
+static \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} \mbox{\hyperlink{class_console_app1_1_1_program_aa16eabc258256b72bbc06dbf7aa31b60}{food}}
+\item 
+static int \mbox{\hyperlink{class_console_app1_1_1_program_a4817dca99c9e1498a162f9cf7c6e7f1b}{Food\+Count}}
+\item 
+static int \mbox{\hyperlink{class_console_app1_1_1_program_ac81f22d0a367f722d39309a6beacf3e0}{direction}}
+\item 
+static readonly int \mbox{\hyperlink{class_console_app1_1_1_program_a703b2ca5f3be0db1b18216097c84ec54}{speed}} = 1
+\item 
+static bool \mbox{\hyperlink{class_console_app1_1_1_program_a81d479ca5cda23580b1f47e58ac92972}{Populated}} = false
+\item 
+static bool \mbox{\hyperlink{class_console_app1_1_1_program_ab6e8f2ac8f2b6e84b7575a018ad16cfe}{Lost}} = false
+\item 
+static int \mbox{\hyperlink{class_console_app1_1_1_program_a82413cd998299920e00088d602570895}{snake\+Length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_console_app1_1_1_program_a821a001e9e4e081487120924421fb71e}\label{class_console_app1_1_1_program_a821a001e9e4e081487120924421fb71e}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!addFood@{addFood}}
+\index{addFood@{addFood}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{addFood()}{addFood()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+add\+Food (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_ad1ce8e417e47e9c2113d5913f574e4d9}\label{class_console_app1_1_1_program_ad1ce8e417e47e9c2113d5913f574e4d9}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!checkCell@{checkCell}}
+\index{checkCell@{checkCell}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{checkCell()}{checkCell()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+check\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a66cf10101fee7894fe5f0fdf2a6fc72c}\label{class_console_app1_1_1_program_a66cf10101fee7894fe5f0fdf2a6fc72c}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!doInput@{doInput}}
+\index{doInput@{doInput}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{doInput()}{doInput()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+do\+Input (\begin{DoxyParamCaption}\item[{char}]{inp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_abfb3ca9ce15e3b7ca51ff62fd14f765c}\label{class_console_app1_1_1_program_abfb3ca9ce15e3b7ca51ff62fd14f765c}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!eatFood@{eatFood}}
+\index{eatFood@{eatFood}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{eatFood()}{eatFood()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+eat\+Food (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a9a2d1fc16219bdfaa4105f24af5dc2dc}\label{class_console_app1_1_1_program_a9a2d1fc16219bdfaa4105f24af5dc2dc}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!getInput@{getInput}}
+\index{getInput@{getInput}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{getInput()}{getInput()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_aabe6b2b18b447c1ce03a8d3ba593c76b}\label{class_console_app1_1_1_program_aabe6b2b18b447c1ce03a8d3ba593c76b}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!goDown@{goDown}}
+\index{goDown@{goDown}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{goDown()}{goDown()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+go\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_aa3e59472abd2f1d9e45e59eacd0280f5}\label{class_console_app1_1_1_program_aa3e59472abd2f1d9e45e59eacd0280f5}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!goLeft@{goLeft}}
+\index{goLeft@{goLeft}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{goLeft()}{goLeft()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+go\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a3ac0bbdb6a8d8832d646fb1b66bf188c}\label{class_console_app1_1_1_program_a3ac0bbdb6a8d8832d646fb1b66bf188c}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!goRight@{goRight}}
+\index{goRight@{goRight}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{goRight()}{goRight()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+go\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_aed2b39bab0e98efb0530e790997a0d32}\label{class_console_app1_1_1_program_aed2b39bab0e98efb0530e790997a0d32}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!goUp@{goUp}}
+\index{goUp@{goUp}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{goUp()}{goUp()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+go\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_ac2692635719921e7d44a468a6a1ad5ff}\label{class_console_app1_1_1_program_ac2692635719921e7d44a468a6a1ad5ff}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Lose@{Lose}}
+\index{Lose@{Lose}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Lose()}{Lose()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+Lose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_ae6cedb55c6b52f4193827df8c1cf88cc}\label{class_console_app1_1_1_program_ae6cedb55c6b52f4193827df8c1cf88cc}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Main@{Main}}
+\index{Main@{Main}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Main()}{Main()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+Main (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a2d303632ad3a6155d26d259ac797200e}\label{class_console_app1_1_1_program_a2d303632ad3a6155d26d259ac797200e}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Move@{Move}}
+\index{Move@{Move}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a35abe27c835a726a87eb07d49bf8bdf8}\label{class_console_app1_1_1_program_a35abe27c835a726a87eb07d49bf8bdf8}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!populateGrid@{populateGrid}}
+\index{populateGrid@{populateGrid}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{populateGrid()}{populateGrid()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+populate\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a12878557b5b4062a2888ebc9d16d1bbf}\label{class_console_app1_1_1_program_a12878557b5b4062a2888ebc9d16d1bbf}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!printGrid@{printGrid}}
+\index{printGrid@{printGrid}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{printGrid()}{printGrid()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+print\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a4424e82fa894c78e6c9693d7caf1bbfc}\label{class_console_app1_1_1_program_a4424e82fa894c78e6c9693d7caf1bbfc}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Restart@{Restart}}
+\index{Restart@{Restart}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Restart()}{Restart()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+Restart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a8e4f38ecd8f0c9546cf72f8687c43ef8}\label{class_console_app1_1_1_program_a8e4f38ecd8f0c9546cf72f8687c43ef8}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!updatePos@{updatePos}}
+\index{updatePos@{updatePos}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{updatePos()}{updatePos()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+update\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a02e35bebcaf2d16f0b3baeb3a59e5dcc}\label{class_console_app1_1_1_program_a02e35bebcaf2d16f0b3baeb3a59e5dcc}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!updateScreen@{updateScreen}}
+\index{updateScreen@{updateScreen}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{updateScreen()}{updateScreen()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+update\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_aed58d82ef4cfdfb538d4530fa775491a}\label{class_console_app1_1_1_program_aed58d82ef4cfdfb538d4530fa775491a}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!visitCell@{visitCell}}
+\index{visitCell@{visitCell}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{visitCell()}{visitCell()}}
+{\footnotesize\ttfamily static void Console\+App1.\+Program.\+visit\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_console_app1_1_1_program_ae7ea8ebe5d970eee2afe9bb91b422f0d}\label{class_console_app1_1_1_program_ae7ea8ebe5d970eee2afe9bb91b422f0d}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!currentCell@{currentCell}}
+\index{currentCell@{currentCell}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{currentCell}{currentCell}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} Console\+App1.\+Program.\+current\+Cell\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_ac81f22d0a367f722d39309a6beacf3e0}\label{class_console_app1_1_1_program_ac81f22d0a367f722d39309a6beacf3e0}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!direction@{direction}}
+\index{direction@{direction}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily int Console\+App1.\+Program.\+direction\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_aa16eabc258256b72bbc06dbf7aa31b60}\label{class_console_app1_1_1_program_aa16eabc258256b72bbc06dbf7aa31b60}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!food@{food}}
+\index{food@{food}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{food}{food}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} Console\+App1.\+Program.\+food\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a4817dca99c9e1498a162f9cf7c6e7f1b}\label{class_console_app1_1_1_program_a4817dca99c9e1498a162f9cf7c6e7f1b}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!FoodCount@{FoodCount}}
+\index{FoodCount@{FoodCount}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{FoodCount}{FoodCount}}
+{\footnotesize\ttfamily int Console\+App1.\+Program.\+Food\+Count\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a3f63998eb8d4bcb7bc7be116c8229872}\label{class_console_app1_1_1_program_a3f63998eb8d4bcb7bc7be116c8229872}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!grid@{grid}}
+\index{grid@{grid}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}} \mbox{[},\mbox{]} Console\+App1.\+Program.\+grid = new \mbox{\hyperlink{class_console_app1_1_1_program_1_1_cell}{Cell}}\mbox{[}\mbox{\hyperlink{class_console_app1_1_1_program_a792b906ba8f79a01a18364a4906835ce}{gridH}}, \mbox{\hyperlink{class_console_app1_1_1_program_a1fd7bd773a135929eb29924fd11423ed}{gridW}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a792b906ba8f79a01a18364a4906835ce}\label{class_console_app1_1_1_program_a792b906ba8f79a01a18364a4906835ce}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!gridH@{gridH}}
+\index{gridH@{gridH}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{gridH}{gridH}}
+{\footnotesize\ttfamily readonly int Console\+App1.\+Program.\+gridH = 25\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a1fd7bd773a135929eb29924fd11423ed}\label{class_console_app1_1_1_program_a1fd7bd773a135929eb29924fd11423ed}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!gridW@{gridW}}
+\index{gridW@{gridW}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{gridW}{gridW}}
+{\footnotesize\ttfamily readonly int Console\+App1.\+Program.\+gridW = 90\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_ab6e8f2ac8f2b6e84b7575a018ad16cfe}\label{class_console_app1_1_1_program_ab6e8f2ac8f2b6e84b7575a018ad16cfe}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Lost@{Lost}}
+\index{Lost@{Lost}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Lost}{Lost}}
+{\footnotesize\ttfamily bool Console\+App1.\+Program.\+Lost = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a81d479ca5cda23580b1f47e58ac92972}\label{class_console_app1_1_1_program_a81d479ca5cda23580b1f47e58ac92972}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!Populated@{Populated}}
+\index{Populated@{Populated}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{Populated}{Populated}}
+{\footnotesize\ttfamily bool Console\+App1.\+Program.\+Populated = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a82413cd998299920e00088d602570895}\label{class_console_app1_1_1_program_a82413cd998299920e00088d602570895}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!snakeLength@{snakeLength}}
+\index{snakeLength@{snakeLength}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{snakeLength}{snakeLength}}
+{\footnotesize\ttfamily int Console\+App1.\+Program.\+snake\+Length\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_console_app1_1_1_program_a703b2ca5f3be0db1b18216097c84ec54}\label{class_console_app1_1_1_program_a703b2ca5f3be0db1b18216097c84ec54}} 
+\index{ConsoleApp1.Program@{ConsoleApp1.Program}!speed@{speed}}
+\index{speed@{speed}!ConsoleApp1.Program@{ConsoleApp1.Program}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily readonly int Console\+App1.\+Program.\+speed = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_program_8cs}{Program.\+cs}}\end{DoxyCompactItemize}
