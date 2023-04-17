@@ -127,7 +127,7 @@ namespace Snake
                 updateScreen();
             }
             input = Console.ReadKey();
-            doInput(input.KeyChar);
+            doInput(input.Key);
         }
         /// <summary>
         /// Kontrollerar om den givna cellen innehåller mat eller om ormen kolliderar med sig själv.
@@ -181,20 +181,24 @@ namespace Snake
         /// Utför en åtgärd baserat på spelarens input.
         /// </summary>
         /// <param name="inp">Spelarens input.</param>
-        static void doInput(char inp)
+        static void doInput(ConsoleKey inp)
         {
             switch (inp)
             {
-                case 'w':
+                case ConsoleKey.UpArrow:
+                case ConsoleKey.W:
                     goUp();
                     break;
-                case 's':
+                case ConsoleKey.DownArrow:
+                case ConsoleKey.S:
                     goDown();
                     break;
-                case 'a':
+                case ConsoleKey.LeftArrow:
+                case ConsoleKey.A:
                     goRight();
                     break;
-                case 'd':
+                case ConsoleKey.RightArrow:
+                case ConsoleKey.D:
                     goLeft();
                     break;
             }
@@ -303,7 +307,7 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 1);
+            Thread.Sleep(speed * 100);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
