@@ -133,7 +133,6 @@ namespace Snake
         static void Lose()
         {
             Console.Clear();
-            string s = "You lost!!!";
             var list = new List<string>()
             {
             @" $$$$$$\                                                                                  ",
