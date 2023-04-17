@@ -87,6 +87,9 @@ namespace ConsoleApp1
 
             Console.WriteLine(s);
             Thread.Sleep(3000);
+
+            Populated = false;
+            Lost = false;
             Main(new string[0]);
         }
 
