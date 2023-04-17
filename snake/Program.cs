@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Snake
 {
     /// <summary>
     /// Program-klassen innehåller huvudmetoden och spelets logik.
