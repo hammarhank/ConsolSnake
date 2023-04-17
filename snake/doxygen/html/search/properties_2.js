@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../class_console_app1_1_1_program_1_1_cell.html#af3ce9fd6ed8c98ac6e5af7edc3113c63',1,'ConsoleApp1::Program::Cell']]]
+  ['x_0',['x',['../class_snake_1_1_program_1_1_cell.html#a88c66b7d96ff4f9f2786360852379db0',1,'Snake::Program::Cell']]]
 ];

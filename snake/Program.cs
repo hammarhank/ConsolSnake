@@ -1,23 +1,63 @@
-﻿using System.Diagnostics;
-
-namespace ConsoleApp1
+﻿/// <summary>
+/// Snake är ett enkelt konsolspel där spelaren styr en orm som rör sig över en rutnät.
+/// </summary>
+namespace Snake
 {
+    /// <summary>
+    /// Program-klassen innehåller huvudmetoden och spelets logik.
+    /// </summary>
     class Program
     {
-        /// <summary>
-        /// 
+
+        ///  /// <summary>
+        /// Bredden på rutnätet.
         /// </summary>
         static readonly int gridW = 90;
+        /// <summary>
+        /// Höjden på rutnätet.
+        /// </summary>
         static readonly int gridH = 25;
+        /// <summary>
+        /// Rutnätet där spelet utspelas.
+        /// </summary>
         static Cell[,] grid = new Cell[gridH, gridW];
+        /// <summary>
+        /// Den nuvarande cellen där ormen befinner sig.
+        /// </summary>
         static Cell currentCell;
+        /// <summary>
+        /// Den cell som innehåller mat för ormen.
+        /// </summary>
         static Cell food;
+        /// <summary>
+        /// Räknare för hur mycket mat som har ätits.
+        /// </summary>
         static int FoodCount;
+        /// <summary>
+        /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
+        /// </summary>
         static int direction; //0=Up 1=Right 2=Down 3=Left
+        /// <summary>
+        /// Ormens hastighet.
+        /// </summary>
         static readonly int speed = 1;
+        /// <summary>
+        /// Om rutnätet är befolkat med objekt eller inte.
+        /// </summary>
         static bool Populated = false;
+        /// <summary>
+        /// Om spelaren har förlorat eller inte.
+        /// </summary>
         static bool Lost = false;
+        /// <summary>
+        /// Ormens längd.
+        /// </summary>
         static int snakeLength;
+
+        /// <summary>
+        /// Huvudmetoden för Program-klassen.
+        /// </summary>
+        /// <param name="args">Argument för kommandoraden.</param>
 
         static void Main(string[] args)
         {
@@ -37,7 +77,9 @@ namespace ConsoleApp1
                 Restart();
             }
         }
-
+        /// <summary>
+        /// Återstartar spelet och uppdaterar skärmen.
+        /// </summary>
         static void Restart()
         {
             Console.SetCursorPosition(0, 0);
@@ -45,14 +87,18 @@ namespace ConsoleApp1
             Console.WriteLine("Length: {0}", snakeLength);
             getInput();
         }
-
+        /// <summary>
+        /// Uppdaterar skärmen med aktuell rutnät och orm.
+        /// </summary>
         static void updateScreen()
         {
             Console.SetCursorPosition(0, 0);
             printGrid();
             Console.WriteLine("Length: {0}", snakeLength);
         }
-
+        /// <summary>
+        /// Tar emot spelarens input för att styra ormen.
+        /// </summary>
         static void getInput()
         {
 
@@ -66,7 +112,10 @@ namespace ConsoleApp1
             input = Console.ReadKey();
             doInput(input.KeyChar);
         }
-
+        /// <summary>
+        /// Kontrollerar om den givna cellen innehåller mat eller om ormen kolliderar med sig själv.
+        /// </summary>
+        /// <param name="cell">Cellen som ska kontrolleras.</param>
         static void checkCell(Cell cell)
         {
             if (cell.val == "%")
@@ -78,7 +127,9 @@ namespace ConsoleApp1
                 Lose();
             }
         }
-
+        /// <summary>
+        /// Hanterar förlust av spelet och återstartar det.
+        /// </summary>
         static void Lose()
         {
             Console.Clear();
@@ -92,7 +143,10 @@ namespace ConsoleApp1
             Lost = false;
             Main(new string[0]);
         }
-
+        /// <summary>
+        /// Utför en åtgärd baserat på spelarens input.
+        /// </summary>
+        /// <param name="inp">Spelarens input.</param>
         static void doInput(char inp)
         {
             switch (inp)
@@ -111,7 +165,9 @@ namespace ConsoleApp1
                     break;
             }
         }
-
+        /// <summary>
+        /// Lägger till mat i en slumpmässig ledig cell på rutnätet.
+        /// </summary>
         static void addFood()
         {
             Random r = new Random();
@@ -124,41 +180,53 @@ namespace ConsoleApp1
                 break;
             }
         }
-
+        /// <summary>
+        /// Ökar ormens längd och lägger till mer mat på rutnätet.
+        /// </summary>
         static void eatFood()
         {
             snakeLength += 1;
             addFood();
         }
-
+        /// <summary>
+        /// Ändrar ormens riktning till upp.
+        /// </summary>
         static void goUp()
         {
             if (direction == 2)
                 return;
             direction = 0;
         }
-
+        /// <summary>
+        /// Ändrar ormens riktning till höger.
+        /// </summary>
         static void goRight()
         {
             if (direction == 3)
                 return;
             direction = 1;
         }
-
+        /// <summary>
+        /// Ändrar ormens riktning till ner.
+        /// </summary>
         static void goDown()
         {
             if (direction == 0)
                 return;
             direction = 2;
         }
-
+        /// <summary>
+        /// Ändrar ormens riktning till vänster.
+        /// </summary>
         static void goLeft()
         {
             if (direction == 1)
                 return;
             direction = 3;
         }
-
+        /// <summary>
+        /// Flyttar ormen i den aktuella riktningen och hanterar kollisioner.
+        /// </summary>
         static void Move()
         {
             if (direction == 0)
@@ -203,7 +271,10 @@ namespace ConsoleApp1
             }
             Thread.Sleep(speed * 100);
         }
-
+        /// <summary>
+        /// Märker den givna cellen som besökt och uppdaterar ormens position.
+        /// </summary>
+        /// <param name="cell">Cellen som ska besökas.</param>
         static void visitCell(Cell cell)
         {
             currentCell.val = "#";
@@ -215,7 +286,9 @@ namespace ConsoleApp1
 
             //checkCell(currentCell);
         }
-
+        /// <summary>
+        /// Uppdaterar ormens position och riktning.
+        /// </summary>
         static void updatePos()
         {
 
@@ -240,7 +313,9 @@ namespace ConsoleApp1
             currentCell.visited = false;
             return;
         }
-
+        /// <summary>
+        /// Fyller rutnätet med celler och sätter upp spelplanen.
+        /// </summary>
         static void populateGrid()
         {
             Random random = new Random();
@@ -260,6 +335,9 @@ namespace ConsoleApp1
                 }
             }
         }
+        /// <summary>
+        /// Skriver ut rutnätet på skärmen.
+        /// </summary>
 
         static void printGrid()
         {
@@ -276,6 +354,9 @@ namespace ConsoleApp1
             }
             Console.WriteLine(toPrint);
         }
+        /// <summary>
+        /// Cell-klassen representerar en cell på rutnätet där spelet utspelas.
+        /// </summary>
         public class Cell
         {
             public string val
