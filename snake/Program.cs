@@ -270,8 +270,8 @@ namespace ConsoleApp1
 
                 }
                 toPrint += "\n";
-            Console.WriteLine(toPrint);
             }
+            Console.WriteLine(toPrint);
         }
         public class Cell
         {
