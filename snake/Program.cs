@@ -40,7 +40,7 @@ namespace Snake
         /// <summary>
         /// Ormens hastighet.
         /// </summary>
-        static readonly int speed = 1;
+        static readonly int speed = 100;
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -146,12 +146,12 @@ namespace Snake
             };
 
             Console.CursorVisible = false;
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 Console.SetCursorPosition((Console.WindowWidth - list[i].Length) / 2, ((Console.WindowHeight - (list.Count)) / 2) + i);
                 Console.WriteLine(list[i]);
             }
-            
+
             Thread.Sleep(3000);
             Console.CursorVisible = true;
             Console.Clear();
@@ -286,7 +286,7 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 100);
+            Thread.Sleep(speed * 1);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
