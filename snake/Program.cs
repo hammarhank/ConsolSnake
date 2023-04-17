@@ -134,10 +134,28 @@ namespace Snake
         {
             Console.Clear();
             string s = "You lost!!!";
-            Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.WindowHeight / 2);
+            var list = new List<string>()
+            {
+            @" $$$$$$\                                                                                  ",
+            @"$$  __$$\                                                                                 ",
+            @"$$ /  \__| $$$$$$\  $$$$$$\$$$$\   $$$$$$\         $$$$$$\ $$\    $$\  $$$$$$\   $$$$$$\  ",
+            @"$$ |$$$$\  \____$$\ $$  _$$  _$$\ $$  __$$\       $$  __$$\\$$\  $$  |$$  __$$\ $$  __$$\ ",
+            @"$$ |\_$$ | $$$$$$$ |$$ / $$ / $$ |$$$$$$$$ |      $$ /  $$ |\$$\$$  / $$$$$$$$ |$$ |  \__|",
+            @"$$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$   ____|      $$ |  $$ | \$$$  /  $$   ____|$$ |      ",
+            @"\$$$$$$  |\$$$$$$$ |$$ | $$ | $$ |\$$$$$$$\       \$$$$$$  |  \$  /   \$$$$$$$\ $$ |      ",
+            @" \______/  \_______|\__| \__| \__| \_______|       \______/    \_/     \_______|\__|      ",
+            };
 
-            Console.WriteLine(s);
+            Console.CursorVisible = false;
+            for(int i = 0; i < list.Count; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth - list[i].Length) / 2, ((Console.WindowHeight - (list.Count)) / 2) + i);
+                Console.WriteLine(list[i]);
+            }
+            
             Thread.Sleep(3000);
+            Console.CursorVisible = true;
+            Console.Clear();
 
             Populated = false;
             Lost = false;
