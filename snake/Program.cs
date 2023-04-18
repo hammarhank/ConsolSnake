@@ -195,7 +195,9 @@
             Lost = false;
             Main(new string[0]);
         }
-
+        /// <summary>
+        /// Sparar highscore till highscore.txt
+        /// </summary>
         private static void addHighScore()
         {
             if (points > 0)
@@ -208,7 +210,9 @@
             }
             else { showHighScores(); }
         }
-
+        /// <summary>
+        /// Visar highscore
+        /// </summary>
         static void showHighScores()
         {
             Console.Clear();
@@ -222,6 +226,8 @@
             }
             Console.WriteLine("\nPress Enter to return to Main menu");
             Console.ReadKey();
+            Populated = false;
+            Lost = false;
             Main(new string[0]);
         }
         /// <summary>
