@@ -1,4 +1,6 @@
-﻿namespace Snake
+﻿using System.Drawing;
+
+namespace Snake
 {
     /// <summary>
     /// Program-klassen innehåller huvudmetoden och spelets logik.
@@ -53,7 +55,9 @@
         /// <summary>
         /// Game poäng
         /// </summary>
-        static int points;
+        static int points = 0;
+
+        static int level = 1;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -111,8 +115,7 @@
             Console.SetCursorPosition(0, 0);
             printGrid();
             //Console.WriteLine($"Length: {snakeLength}");
-            int orgLength = snakeLength;
-            Console.WriteLine($"Point: {Math.Floor(snakeLength * 3.85)}");
+            Console.WriteLine($"Points: {points}");
         }
         /// <summary>
         /// Tar emot spelarens input för att styra ormen.
@@ -225,6 +228,7 @@
         /// </summary>
         static void eatFood()
         {
+            points += 1;
             snakeLength += 1;
             addFood();
         }
