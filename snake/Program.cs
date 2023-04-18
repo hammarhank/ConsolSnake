@@ -92,6 +92,7 @@ namespace Snake
         {
             if (!Populated)
             {
+                points = 0;
                 FoodCount = 0;
                 BombCount = 0;
                 snakeLength = 5;
@@ -99,7 +100,6 @@ namespace Snake
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
                 updatePos();
                 addFood();
-                addBomb();
                 Populated = true;
             }
 
@@ -129,7 +129,6 @@ namespace Snake
         /// </summary>
         static void getInput()
         {
-
             //Console.Write("Where to move? [WASD] ");
             ConsoleKeyInfo input;
             while (!Console.KeyAvailable)
@@ -241,6 +240,10 @@ namespace Snake
         {
             points += 1;
             snakeLength += 1;
+            if (points == 1)
+            {
+                addBomb();
+            }
             //TODO: Poängvariabel ska bli +1
             addFood();
         }
@@ -265,7 +268,10 @@ namespace Snake
         static void eatBomb()
         {
             points -= 1;
-            addBomb();
+            if (points != 0)
+            {
+                addBomb();
+            }
             //TODO: Poängsumman ska bli minus.
         }
         /// <summary>
