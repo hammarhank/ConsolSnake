@@ -229,8 +229,10 @@ namespace Snake
             {
                 cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
                 if (cell.val == " ")
+                {
                     cell.val = "%";
-                break;
+                    break;
+                }
             }
         }
         /// <summary>
@@ -258,8 +260,10 @@ namespace Snake
             {
                 cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
                 if (cell.val == " ")
+                {
                     cell.val = "B";
-                break;
+                    break;
+                }
             }
         }
         /// <summary>
