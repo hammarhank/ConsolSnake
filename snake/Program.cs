@@ -1,13 +1,4 @@
-﻿using snake;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-
-namespace Snake
+﻿namespace Snake
 {
     /// <summary>
     /// Program-klassen innehåller huvudmetoden och spelets logik.
