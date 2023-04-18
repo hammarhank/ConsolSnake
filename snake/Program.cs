@@ -27,11 +27,16 @@ namespace Snake
         /// <summary>
         /// Den cell som innehåller mat för ormen.
         /// </summary>
+        //TBD: food är oanvänd
         static Cell food;
         /// <summary>
         /// Räknare för hur mycket mat som har ätits.
         /// </summary>
         static int FoodCount;
+        /// <summary>
+        /// Räknare för hur många bomber ätits. Används för att räkna ut antalet poäng man har.
+        /// </summary>
+        static int BombCount;
         /// <summary>
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
@@ -39,7 +44,7 @@ namespace Snake
         /// <summary>
         /// Spelets hastighet
         /// </summary>
-        static readonly int speed = 400; // TBD: Bör vara en double så man kan fininställa hastighet
+        static readonly int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -87,7 +92,9 @@ namespace Snake
         {
             if (!Populated)
             {
+                points = 0;
                 FoodCount = 0;
+                BombCount = 0;
                 snakeLength = 5;
                 populateGrid();
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
@@ -114,7 +121,7 @@ namespace Snake
         {
             Console.SetCursorPosition(0, 0);
             printGrid();
-            //Console.WriteLine($"Length: {snakeLength}");
+            Console.WriteLine($"Length: {snakeLength}");
             Console.WriteLine($"Points: {points}");
         }
         /// <summary>
@@ -122,7 +129,6 @@ namespace Snake
         /// </summary>
         static void getInput()
         {
-
             //Console.Write("Where to move? [WASD] ");
             ConsoleKeyInfo input;
             while (!Console.KeyAvailable)
@@ -144,7 +150,11 @@ namespace Snake
             {
                 eatFood();
             }
-            if (cell.visited)
+            else if (cell.val == "B")
+            {
+                eatBomb();
+            }
+            else if (cell.visited)
             {
                 Lose();
             }
@@ -230,7 +240,39 @@ namespace Snake
         {
             points += 1;
             snakeLength += 1;
+            if (points == 1)
+            {
+                addBomb();
+            }
+            //TODO: Poängvariabel ska bli +1
             addFood();
+        }
+        /// <summary>
+        /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
+        /// </summary>
+        static void addBomb()
+        {
+            Random r = new Random();
+            Cell cell;
+            while (true)
+            {
+                cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
+                if (cell.val == " ")
+                    cell.val = "B";
+                break;
+            }
+        }
+        /// <summary>
+        /// Ska öka längden men sänka poängen.
+        /// </summary>
+        static void eatBomb()
+        {
+            points -= 1;
+            if (points != 0)
+            {
+                addBomb();
+            }
+            //TODO: Poängsumman ska bli minus.
         }
         /// <summary>
         /// Ändrar ormens riktning till upp.
