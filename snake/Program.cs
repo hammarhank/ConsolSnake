@@ -1,4 +1,5 @@
-﻿using System;
+﻿using snake;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -42,7 +43,10 @@ namespace Snake
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
         static int direction; //0=Up 1=Right 2=Down 3=Left
-        static readonly int speed = 1;
+        /// <summary>
+        /// Spelets hastighet
+        /// </summary>
+        static readonly int speed = 1; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -55,6 +59,10 @@ namespace Snake
         /// Ormens längd.
         /// </summary>
         static int snakeLength;
+        /// <summary>
+        /// Game poäng
+        /// </summary>
+        static int points;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -101,9 +109,7 @@ namespace Snake
 
         static void Restart()
         {
-            Console.SetCursorPosition(0, 0);
-            printGrid();
-            Console.WriteLine("Length: {0}", snakeLength);
+            updateScreen();
             getInput();
         }
         /// <summary>
@@ -113,7 +119,9 @@ namespace Snake
         {
             Console.SetCursorPosition(0, 0);
             printGrid();
-            Console.WriteLine("Length: {0}", snakeLength);
+            //Console.WriteLine($"Length: {snakeLength}");
+            int orgLength = snakeLength;
+            Console.WriteLine($"Point: {Math.Floor(snakeLength * 3.85)}");
         }
         /// <summary>
         /// Tar emot spelarens input för att styra ormen.
@@ -127,6 +135,7 @@ namespace Snake
             {
                 Move();
                 updateScreen();
+                Thread.Sleep(speed * 100);
             }
             input = Console.ReadKey();
             doInput(input.Key);
@@ -309,7 +318,6 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 100);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
@@ -414,7 +422,7 @@ namespace Snake
                 get;
                 set;
             }
-            public bool visited
+            public bool visited // TBD: Denna variabel bör heta något annat
             {
                 get;
                 set;
