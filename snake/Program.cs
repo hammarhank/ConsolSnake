@@ -37,7 +37,7 @@
         /// <summary>
         /// Spelets hastighet
         /// </summary>
-        static readonly int speed = 1; // TBD: Bör vara en double så man kan fininställa hastighet
+        static readonly int speed = 400; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -126,7 +126,7 @@
             {
                 Move();
                 updateScreen();
-                Thread.Sleep(speed * 100);
+                Thread.Sleep(speed);
             }
             input = Console.ReadKey();
             doInput(input.Key);
