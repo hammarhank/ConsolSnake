@@ -61,6 +61,10 @@
         static int points = 0;
 
         static int level = 1;
+        /// <summary>
+        /// Tid att frysa skärmen innan game over
+        /// </summary>
+        static int freezeTime = 1500;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -158,6 +162,7 @@
             }
             else if (cell.visited)
             {
+                Thread.Sleep(freezeTime);
                 Lose();
             }
         }
@@ -278,7 +283,7 @@
         /// </summary>
         static void eatFood()
         {
-            points += 1;
+            points += 1 * level;
             snakeLength += 1;
             if (points == 1)
             {
@@ -362,6 +367,7 @@
                 //up
                 if (grid[currentCell.y - 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -372,6 +378,7 @@
                 //right
                 if (grid[currentCell.y, currentCell.x - 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -382,6 +389,7 @@
                 //down
                 if (grid[currentCell.y + 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -392,6 +400,7 @@
                 //left
                 if (grid[currentCell.y, currentCell.x + 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
