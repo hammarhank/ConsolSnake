@@ -219,10 +219,18 @@
             Console.WriteLine("High Scores:");
             Console.WriteLine("=============");
             string[] highScores = File.ReadAllLines("highscore.txt");
-            Array.Sort(highScores);
-            for (int i = 0; i < Math.Min(10, highScores.Length); i++)
+            Dictionary<int, string> scores = new Dictionary<int, string>();
+            foreach (string highScoreEntry in highScores)
             {
-                Console.WriteLine(highScores[i]);
+                string[] parts = highScoreEntry.Split(':');
+                string name = parts[0].Trim();
+                int score = int.Parse(parts[1].Trim());
+                scores[score] = name;
+            }
+            var sortedScores = scores.OrderByDescending(x => x.Key);
+            foreach (var score in sortedScores)
+            {
+                Console.WriteLine($"{score.Value}: {score.Key}");
             }
             Console.WriteLine("\nPress Enter to return to Main menu");
             Console.ReadKey();
