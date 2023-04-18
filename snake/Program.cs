@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Snake
+﻿namespace Snake
 {
     /// <summary>
     /// Program-klassen innehåller huvudmetoden och spelets logik.
@@ -83,6 +81,10 @@ namespace Snake
             if (command == options[0])
             {
                 Start();
+            }
+            else if (command == options[4])
+            {
+                showHighScores();
             }
         }
         /// <summary>
@@ -187,9 +189,39 @@ namespace Snake
             Thread.Sleep(3000);
             Console.CursorVisible = true;
             Console.Clear();
+            addHighScore();
 
             Populated = false;
             Lost = false;
+            Main(new string[0]);
+        }
+
+        private static void addHighScore()
+        {
+            if (points > 0)
+            {
+                Console.Write("Enter your name: ");
+                string name = Console.ReadLine();
+                string highScoreEntry = $"{name}: {points}";
+                File.AppendAllText("highscore.txt", highScoreEntry + Environment.NewLine);
+                showHighScores();
+            }
+            else { showHighScores(); }
+        }
+
+        static void showHighScores()
+        {
+            Console.Clear();
+            Console.WriteLine("High Scores:");
+            Console.WriteLine("=============");
+            string[] highScores = File.ReadAllLines("highscore.txt");
+            Array.Sort(highScores);
+            for (int i = 0; i < Math.Min(10, highScores.Length); i++)
+            {
+                Console.WriteLine(highScores[i]);
+            }
+            Console.WriteLine("\nPress Enter to return to Main menu");
+            Console.ReadKey();
             Main(new string[0]);
         }
         /// <summary>
