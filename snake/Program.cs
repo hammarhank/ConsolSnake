@@ -37,6 +37,7 @@ namespace Snake
         /// Räknare för hur mycket mat som har ätits.
         /// </summary>
         static int FoodCount;
+        //TODO: Använd FoodCount för att räkna spelarens poäng.
         /// <summary>
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
@@ -88,6 +89,7 @@ namespace Snake
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
                 updatePos();
                 addFood();
+                addBomb();
                 Populated = true;
             }
 
@@ -139,7 +141,11 @@ namespace Snake
             {
                 eatFood();
             }
-            if (cell.visited)
+            else if (cell.val == "O")
+            {
+                eatBomb();
+            }
+            else if (cell.visited)
             {
                 Lose();
             }
@@ -220,7 +226,32 @@ namespace Snake
         static void eatFood()
         {
             snakeLength += 1;
+            //TODO: Poängvariabel ska bli +1
             addFood();
+        }
+        /// <summary>
+        /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
+        /// </summary>
+        static void addBomb()
+        {
+            Random r = new Random();
+            Cell cell;
+            while (true)
+            {
+                cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
+                if (cell.val == " ")
+                    cell.val = "O";
+                break;
+            }
+        }
+        /// <summary>
+        /// Ska öka längden men sänka poängen. Har dock ingen egen poängvariabel än.
+        /// </summary>
+        static void eatBomb()
+        {
+            snakeLength += 1;
+            addBomb();
+            //TODO: Poängsumman ska bli minus.
         }
         /// <summary>
         /// Ändrar ormens riktning till upp.
@@ -303,7 +334,7 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 1);
+            Thread.Sleep(speed * 100);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
