@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Snake
 {
@@ -32,17 +27,24 @@ namespace Snake
         /// <summary>
         /// Den cell som innehåller mat för ormen.
         /// </summary>
+        //TBD: food är oanvänd
         static Cell food;
         /// <summary>
         /// Räknare för hur mycket mat som har ätits.
         /// </summary>
         static int FoodCount;
-        //TODO: Använd FoodCount för att räkna spelarens poäng.
+        /// <summary>
+        /// Räknare för hur många bomber ätits. Används för att räkna ut antalet poäng man har.
+        /// </summary>
+        static int BombCount;
         /// <summary>
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
         static int direction; //0=Up 1=Right 2=Down 3=Left
-        static readonly int speed = 1;
+        /// <summary>
+        /// Spelets hastighet
+        /// </summary>
+        static readonly int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -55,6 +57,12 @@ namespace Snake
         /// Ormens längd.
         /// </summary>
         static int snakeLength;
+        /// <summary>
+        /// Game poäng
+        /// </summary>
+        static int points = 0;
+
+        static int level = 1;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -69,6 +77,7 @@ namespace Snake
 
             Console.Clear();
 
+            // FIXME: Om man trycker på ecape i menyn kastas IndexOutOfRangeException
             string command = options[selectedIndex];
 
             if (command == options[0])
@@ -84,6 +93,7 @@ namespace Snake
             if (!Populated)
             {
                 FoodCount = 0;
+                BombCount = 0;
                 snakeLength = 5;
                 populateGrid();
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
@@ -101,9 +111,7 @@ namespace Snake
 
         static void Restart()
         {
-            Console.SetCursorPosition(0, 0);
-            printGrid();
-            Console.WriteLine("Length: {0}", snakeLength);
+            updateScreen();
             getInput();
         }
         /// <summary>
@@ -113,7 +121,8 @@ namespace Snake
         {
             Console.SetCursorPosition(0, 0);
             printGrid();
-            Console.WriteLine("Length: {0}", snakeLength);
+            Console.WriteLine($"Length: {snakeLength}");
+            Console.WriteLine($"Points: {points}");
         }
         /// <summary>
         /// Tar emot spelarens input för att styra ormen.
@@ -127,9 +136,10 @@ namespace Snake
             {
                 Move();
                 updateScreen();
+                Thread.Sleep(speed);
             }
             input = Console.ReadKey();
-            doInput(input.KeyChar);
+            doInput(input.Key);
         }
         /// <summary>
         /// Kontrollerar om den givna cellen innehåller mat eller om ormen kolliderar med sig själv.
@@ -141,7 +151,7 @@ namespace Snake
             {
                 eatFood();
             }
-            else if (cell.val == "O")
+            else if (cell.val == "B")
             {
                 eatBomb();
             }
@@ -187,20 +197,24 @@ namespace Snake
         /// Utför en åtgärd baserat på spelarens input.
         /// </summary>
         /// <param name="inp">Spelarens input.</param>
-        static void doInput(char inp)
+        static void doInput(ConsoleKey inp)
         {
             switch (inp)
             {
-                case 'w':
+                case ConsoleKey.UpArrow:
+                case ConsoleKey.W:
                     goUp();
                     break;
-                case 's':
+                case ConsoleKey.DownArrow:
+                case ConsoleKey.S:
                     goDown();
                     break;
-                case 'a':
+                case ConsoleKey.LeftArrow:
+                case ConsoleKey.A:
                     goRight();
                     break;
-                case 'd':
+                case ConsoleKey.RightArrow:
+                case ConsoleKey.D:
                     goLeft();
                     break;
             }
@@ -225,6 +239,7 @@ namespace Snake
         /// </summary>
         static void eatFood()
         {
+            points += 1;
             snakeLength += 1;
             //TODO: Poängvariabel ska bli +1
             addFood();
@@ -240,16 +255,16 @@ namespace Snake
             {
                 cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
                 if (cell.val == " ")
-                    cell.val = "O";
+                    cell.val = "B";
                 break;
             }
         }
         /// <summary>
-        /// Ska öka längden men sänka poängen. Har dock ingen egen poängvariabel än.
+        /// Ska öka längden men sänka poängen.
         /// </summary>
         static void eatBomb()
         {
-            snakeLength += 1;
+            points -= 1;
             addBomb();
             //TODO: Poängsumman ska bli minus.
         }
@@ -334,7 +349,6 @@ namespace Snake
                 }
                 visitCell(grid[currentCell.y, currentCell.x + 1]);
             }
-            Thread.Sleep(speed * 100);
         }
         /// <summary>
         /// Märker den givna cellen som besökt och uppdaterar ormens position.
@@ -439,7 +453,7 @@ namespace Snake
                 get;
                 set;
             }
-            public bool visited
+            public bool visited // TBD: Denna variabel bör heta något annat
             {
                 get;
                 set;
