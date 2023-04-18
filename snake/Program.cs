@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using static Snake.Program;
 
 namespace Snake
 {
@@ -248,6 +249,7 @@ namespace Snake
             }
             //TODO: Poängvariabel ska bli +1
             addFood();
+            addWall();
         }
         /// <summary>
         /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
@@ -269,6 +271,7 @@ namespace Snake
         /// <summary>
         /// Ska öka längden men sänka poängen.
         /// </summary>
+        //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90.
         static void eatBomb()
         {
             points -= 1;
@@ -276,7 +279,24 @@ namespace Snake
             {
                 addBomb();
             }
-            //TODO: Poängsumman ska bli minus.
+        }
+        /// <summary>
+        /// Lägger till en "vägg" (är ju bara en del). Används varje gång man äter mat.
+        //TODO: Gör så att addWall körs när nivån ökar. Den körs när man äter mat än så länge.
+        /// </summary>
+        static void addWall()
+        {
+            Random r = new Random();
+            Cell cell;
+            while (true)
+            {
+                cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
+                if (cell.val == " ")
+                {
+                    cell.val = "*";
+                    break;
+                }
+            }
         }
         /// <summary>
         /// Ändrar ormens riktning till upp.
