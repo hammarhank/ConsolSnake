@@ -1,6 +1,3 @@
-﻿using System.Drawing;
-using static Snake.Program;
-
 namespace Snake
 {
     /// <summary>
@@ -64,6 +61,10 @@ namespace Snake
         static int points = 0;
 
         static int level = 1;
+        /// <summary>
+        /// Tid att frysa skärmen innan game over
+        /// </summary>
+        static int freezeTime = 1500;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -84,6 +85,10 @@ namespace Snake
             if (command == options[0])
             {
                 Start();
+            }
+            else if (command == options[4])
+            {
+                showHighScores();
             }
         }
         /// <summary>
@@ -157,6 +162,7 @@ namespace Snake
             }
             else if (cell.visited)
             {
+                Thread.Sleep(freezeTime);
                 Lose();
             }
         }
@@ -188,7 +194,51 @@ namespace Snake
             Thread.Sleep(3000);
             Console.CursorVisible = true;
             Console.Clear();
+            addHighScore();
 
+            Populated = false;
+            Lost = false;
+            Main(new string[0]);
+        }
+        /// <summary>
+        /// Sparar highscore till highscore.txt
+        /// </summary>
+        private static void addHighScore()
+        {
+            if (points > 0)
+            {
+                Console.Write("Enter your name: ");
+                string name = Console.ReadLine();
+                string highScoreEntry = $"{name}: {points}";
+                File.AppendAllText("highscore.txt", highScoreEntry + Environment.NewLine);
+                showHighScores();
+            }
+            else { showHighScores(); }
+        }
+        /// <summary>
+        /// Visar highscore
+        /// </summary>
+        static void showHighScores()
+        { //FIXME: highscore beter sig konstigt. visar endast 2 högst upp. den som är yhögst up visas inte
+            Console.Clear();
+            Console.WriteLine("High Scores:");
+            Console.WriteLine("=============");
+            string[] highScores = File.ReadAllLines("highscore.txt");
+            Dictionary<int, string> scores = new Dictionary<int, string>();
+            foreach (string highScoreEntry in highScores)
+            {
+                string[] parts = highScoreEntry.Split(':');
+                string name = parts[0].Trim();
+                int score = int.Parse(parts[1].Trim());
+                scores[score] = name;
+            }
+            var sortedScores = scores.OrderByDescending(x => x.Key);
+            foreach (var score in sortedScores)
+            {
+                Console.WriteLine($"{score.Value}: {score.Key}");
+            }
+            Console.WriteLine("\nPress Enter to return to Main menu");
+            Console.ReadKey();
             Populated = false;
             Lost = false;
             Main(new string[0]);
@@ -241,7 +291,7 @@ namespace Snake
         /// </summary>
         static void eatFood()
         {
-            points += 1;
+            points += 1 * level;
             snakeLength += 1;
             if (points == 1)
             {
@@ -344,6 +394,7 @@ namespace Snake
                 //up
                 if (grid[currentCell.y - 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -354,6 +405,7 @@ namespace Snake
                 //right
                 if (grid[currentCell.y, currentCell.x - 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -364,6 +416,7 @@ namespace Snake
                 //down
                 if (grid[currentCell.y + 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -374,6 +427,7 @@ namespace Snake
                 //left
                 if (grid[currentCell.y, currentCell.x + 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
