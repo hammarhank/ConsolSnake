@@ -282,8 +282,9 @@ namespace Snake
         }
         /// <summary>
         /// Lägger till en "vägg" (är ju bara en del). Används varje gång man äter mat.
-        //TODO: Gör så att addWall körs när nivån ökar. Den körs när man äter mat än så länge.
         /// </summary>
+        //TODO: Gör så att addWall körs när nivån ökar. Den körs när man äter mat än så länge.
+        //TODO: Gör så att man gör en rad med *, istället för enskilda. Har ingen aning om hur man gör det.
         static void addWall()
         {
             Random r = new Random();
