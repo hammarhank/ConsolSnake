@@ -42,7 +42,8 @@ namespace Snake
         /// <summary>
         /// Spelets hastighet
         /// </summary>
-        static readonly int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
+        //Tog bort readonly så att man kan öka hastigheten med increaseLevel
+        static int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -59,7 +60,9 @@ namespace Snake
         /// Game poäng
         /// </summary>
         static int points = 0;
-
+        /// <summary>
+        /// Svårighetsgraden på spelet.
+        /// </summary>
         static int level = 1;
         /// <summary>
         /// Tid att frysa skärmen innan game over
@@ -131,6 +134,8 @@ namespace Snake
                 FoodCount = 0;
                 BombCount = 0;
                 snakeLength = 5;
+                speed = 100;
+                level = 1;
                 populateGrid();
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
                 updatePos();
@@ -158,6 +163,7 @@ namespace Snake
             printGrid();
             Console.WriteLine($"Length: {snakeLength}");
             Console.WriteLine($"Points: {points}");
+            Console.WriteLine($"Level: {level}      FoodCount: {FoodCount}");
         }
         /// <summary>
         /// Tar emot spelarens input för att styra ormen.
@@ -298,6 +304,19 @@ namespace Snake
                     break;
             }
         }
+        //TODO: Gör så att när foodcount % 10 = 0, level = level + 1
+        //Använder foodcount, som blir +1 för varje matbit man tar nere i 'eatFood'.
+        //Lägger till en till bomb och en av varje väggtyp. Ökar hastigheten med -10. (100 är bashastighet).
+        static void increaseLevel()
+        {
+            level = level + 1;
+            addBomb();
+            addWallH();
+            addWallV();
+            addWallDiagR();
+            addWallDiagL();
+            speed = speed - 10;
+        }
         /// <summary>
         /// Lägger till mat i en slumpmässig ledig cell på rutnätet.
         /// </summary>
@@ -317,21 +336,25 @@ namespace Snake
         }
         /// <summary>
         /// Ökar ormens längd och lägger till mer mat på rutnätet.
+        /// Kollar även antalet matbitar man tagit. Om det antalet % 10 == 0, ökar svårighetsgraden.
         /// </summary>
         static void eatFood()
         {
+            //Ska man öka level före eller efter att man tar biten som ökar svårighetsgraden?
             points += 1 * level;
             snakeLength += 1;
+            //FoodCount används för att öka level med 1 varje gång man tar 10 matbitar.
+            FoodCount = FoodCount + 1;
+            //Satte 'maxvärde' på 50, så att level endast kan öka 5 gånger.
+            if (FoodCount % 10 == 0 && FoodCount <= 50)
+            {
+                increaseLevel();
+            }
             if (points == 1)
             {
                 addBomb();
             }
-            //TODO: Ta bort de från 'eatfood' och  skapa väggar när nivån går upp istället.
             addFood();
-            addWallH();
-            addWallV();
-            addWallDiagR();
-            addWallDiagL();
         }
         /// <summary>
         /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
@@ -351,12 +374,13 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Ska öka längden men sänka poängen.
+        /// Sänka spelarens poäng, men inte längden är samma som innan.
         /// </summary>
         //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90.
         static void eatBomb()
         {
-            points -= 1;
+            //Ökade antalet poäng man förlorar nu när levels finns. Annars förlorade man alltid 1 poäng.
+            points -= 1*level;
             if (points != 0)
             {
                 addBomb();
@@ -516,13 +540,6 @@ namespace Snake
                 }
             }
         }
-        /// <summary>
-        /// Är en kopia av addWallDiagR, 'inverterad'.
-        /// Lägger till en diagonal "vägg". Används varje gång man äter mat.
-        /// Väggen genereras som en punkt, och sedan läggs * till diagonalt neråt åt vänster tills den når maxlängd eller en cell som inte är tom.
-        /// </summary>
-        //TODO: Gör så att addWallDiagL körs när nivån ökar. Den körs när man äter mat än så länge.
-
         /// <summary>
         /// Ändrar ormens riktning till upp.
         /// </summary>
