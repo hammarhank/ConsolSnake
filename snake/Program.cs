@@ -72,7 +72,7 @@ namespace Snake
         static void Main(string[] args)
         {
             string[] options = { "Start", "New", "Load", "Save",
-            "Highscore", "Foo", "Bar", "FooBar", "etc." };
+            "Highscore", "Quit" };
             int selectedIndex = MenuHelper.MultipleChoice(true, options);
 
             Console.Clear();
@@ -83,6 +83,34 @@ namespace Snake
             if (command == options[0])
             {
                 Start();
+            }
+            else if (command == options[1])
+            {
+                //NotImplemented();
+                Thread.Sleep(4000);
+                Main(args);
+            }
+            else if (command == options[2])
+            {
+                NotImplemented();
+                Thread.Sleep(4000);
+                Main(args);
+            }
+            else if (command == options[3])
+            {
+                NotImplemented();
+                Thread.Sleep(4000);
+                Main(args);
+            }
+            else if (command == options[4]) 
+            {
+                NotImplemented();
+                Thread.Sleep(4000);
+                Main(args);
+            }
+            else if (command == options[5])
+            {
+                Console.WriteLine("Good Gye");
             }
         }
         /// <summary>
@@ -489,6 +517,44 @@ namespace Snake
             {
                 val = newVal;
             }
+        }
+
+        static void NotImplemented()
+        {
+            var list = new List<string>()
+            {
+            @"                                                $$\   $$\            $$\                                                   ",
+            @"                                                $$$\  $$ |           $$ |                                                  ",
+            @"                                                $$$$\ $$ | $$$$$$\ $$$$$$\                                                 ",
+            @"                                                $$ $$\$$ |$$  __$$\\_$$  _|                                                ",
+            @"                                                $$ \$$$$ |$$ /  $$ | $$ |                                                  ",
+            @"                                                $$ |\$$$ |$$ |  $$ | $$ |$$\                                               ",
+            @"                                                $$ | \$$ |\$$$$$$  | \$$$$  |                                              ",
+            @"                                                \__|  \__| \______/   \____/                                               ",
+            @"                                                                                                                           ",
+            @"$$\                         $$\                                              $$\                     $$\       $$\ $$\ $$\ ",
+            @"\__|                        $$ |                                             $$ |                    $$ |      $$ |$$ |$$ |",
+            @"$$\ $$$$$$\$$$$\   $$$$$$\  $$ | $$$$$$\  $$$$$$\$$$$\   $$$$$$\  $$$$$$$\ $$$$$$\    $$$$$$\   $$$$$$$ |      $$ |$$ |$$ |",
+            @"$$ |$$  _$$  _$$\ $$  __$$\ $$ |$$  __$$\ $$  _$$  _$$\ $$  __$$\ $$  __$$\\_$$  _|  $$  __$$\ $$  __$$ |      $$ |$$ |$$ |",
+            @"$$ |$$ / $$ / $$ |$$ /  $$ |$$ |$$$$$$$$ |$$ / $$ / $$ |$$$$$$$$ |$$ |  $$ | $$ |    $$$$$$$$ |$$ /  $$ |      \__|\__|\__|",
+            @"$$ |$$ | $$ | $$ |$$ |  $$ |$$ |$$   ____|$$ | $$ | $$ |$$   ____|$$ |  $$ | $$ |$$\ $$   ____|$$ |  $$ |                  ",
+            @"$$ |$$ | $$ | $$ |$$$$$$$  |$$ |\$$$$$$$\ $$ | $$ | $$ |\$$$$$$$\ $$ |  $$ | \$$$$  |\$$$$$$$\ \$$$$$$$ |      $$\ $$\ $$\ ",
+            @"\__|\__| \__| \__|$$  ____/ \__| \_______|\__| \__| \__| \_______|\__|  \__|  \____/  \_______| \_______|      \__|\__|\__|",
+            @"                  $$ |                                                                                                     ",
+            @"                  $$ |                                                                                                     ",
+            @"                  \__|                                                                                                     ",
+            };
+
+            Console.CursorVisible = false;
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.SetCursorPosition((Console.WindowWidth - list[i].Length) / 2, ((Console.WindowHeight - (list.Count)) / 2) + i);
+                Console.WriteLine(list[i]);
+            }
+
+            Thread.Sleep(3000);
+            Console.CursorVisible = true;
+            Console.Clear();
         }
     }
 }
