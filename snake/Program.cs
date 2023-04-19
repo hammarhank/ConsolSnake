@@ -1,5 +1,3 @@
-﻿using System.Drawing;
-
 namespace Snake
 {
     /// <summary>
@@ -63,6 +61,10 @@ namespace Snake
         static int points = 0;
 
         static int level = 1;
+        /// <summary>
+        /// Tid att frysa skärmen innan game over
+        /// </summary>
+        static int freezeTime = 1500;
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -77,40 +79,17 @@ namespace Snake
 
             Console.Clear();
 
+            if (selectedIndex < 0)
+            {
+                Environment.Exit(0);
+            }
+
             // FIXME: Om man trycker på ecape i menyn kastas IndexOutOfRangeException
             string command = options[selectedIndex];
 
             if (command == options[0])
             {
                 Start();
-            }
-            else if (command == options[1])
-            {
-                //NotImplemented();
-                Thread.Sleep(4000);
-                Main(args);
-            }
-            else if (command == options[2])
-            {
-                NotImplemented();
-                Thread.Sleep(4000);
-                Main(args);
-            }
-            else if (command == options[3])
-            {
-                NotImplemented();
-                Thread.Sleep(4000);
-                Main(args);
-            }
-            else if (command == options[4]) 
-            {
-                NotImplemented();
-                Thread.Sleep(4000);
-                Main(args);
-            }
-            else if (command == options[5])
-            {
-                Console.WriteLine("Good Gye");
             }
         }
         /// <summary>
@@ -184,6 +163,7 @@ namespace Snake
             }
             else if (cell.visited)
             {
+                Thread.Sleep(freezeTime);
                 Lose();
             }
         }
@@ -215,7 +195,51 @@ namespace Snake
             Thread.Sleep(3000);
             Console.CursorVisible = true;
             Console.Clear();
+            addHighScore();
 
+            Populated = false;
+            Lost = false;
+            Main(new string[0]);
+        }
+        /// <summary>
+        /// Sparar highscore till highscore.txt
+        /// </summary>
+        private static void addHighScore()
+        {
+            if (points > 0)
+            {
+                Console.Write("Enter your name: ");
+                string name = Console.ReadLine();
+                string highScoreEntry = $"{name}: {points}";
+                File.AppendAllText("highscore.txt", highScoreEntry + Environment.NewLine);
+                showHighScores();
+            }
+            else { showHighScores(); }
+        }
+        /// <summary>
+        /// Visar highscore
+        /// </summary>
+        static void showHighScores()
+        {
+            Console.Clear();
+            Console.WriteLine("High Scores:");
+            Console.WriteLine("=============");
+            string[] highScores = File.ReadAllLines("highscore.txt");
+            Dictionary<int, string> scores = new Dictionary<int, string>();
+            foreach (string highScoreEntry in highScores)
+            {
+                string[] parts = highScoreEntry.Split(':');
+                string name = parts[0].Trim();
+                int score = int.Parse(parts[1].Trim());
+                scores[score] = name;
+            }
+            var sortedScores = scores.OrderByDescending(x => x.Key);
+            foreach (var score in sortedScores)
+            {
+                Console.WriteLine($"{score.Value}: {score.Key}");
+            }
+            Console.WriteLine("\nPress Enter to return to Main menu");
+            Console.ReadKey();
             Populated = false;
             Lost = false;
             Main(new string[0]);
@@ -257,8 +281,10 @@ namespace Snake
             {
                 cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
                 if (cell.val == " ")
+                {
                     cell.val = "%";
-                break;
+                    break;
+                }
             }
         }
         /// <summary>
@@ -266,7 +292,7 @@ namespace Snake
         /// </summary>
         static void eatFood()
         {
-            points += 1;
+            points += 1 * level;
             snakeLength += 1;
             if (points == 1)
             {
@@ -274,6 +300,7 @@ namespace Snake
             }
             //TODO: Poängvariabel ska bli +1
             addFood();
+            addWall();
         }
         /// <summary>
         /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
@@ -286,13 +313,16 @@ namespace Snake
             {
                 cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
                 if (cell.val == " ")
+                {
                     cell.val = "B";
-                break;
+                    break;
+                }
             }
         }
         /// <summary>
         /// Ska öka längden men sänka poängen.
         /// </summary>
+        //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90.
         static void eatBomb()
         {
             points -= 1;
@@ -300,7 +330,24 @@ namespace Snake
             {
                 addBomb();
             }
-            //TODO: Poängsumman ska bli minus.
+        }
+        /// <summary>
+        /// Lägger till en "vägg" (är ju bara en del). Används varje gång man äter mat.
+        //TODO: Gör så att addWall körs när nivån ökar. Den körs när man äter mat än så länge.
+        /// </summary>
+        static void addWall()
+        {
+            Random r = new Random();
+            Cell cell;
+            while (true)
+            {
+                cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
+                if (cell.val == " ")
+                {
+                    cell.val = "*";
+                    break;
+                }
+            }
         }
         /// <summary>
         /// Ändrar ormens riktning till upp.
@@ -348,6 +395,7 @@ namespace Snake
                 //up
                 if (grid[currentCell.y - 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -358,6 +406,7 @@ namespace Snake
                 //right
                 if (grid[currentCell.y, currentCell.x - 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -368,6 +417,7 @@ namespace Snake
                 //down
                 if (grid[currentCell.y + 1, currentCell.x].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -378,6 +428,7 @@ namespace Snake
                 //left
                 if (grid[currentCell.y, currentCell.x + 1].val == "*")
                 {
+                    Thread.Sleep(freezeTime);
                     Lose();
                     return;
                 }
@@ -548,7 +599,6 @@ namespace Snake
             Console.CursorVisible = false;
             for (int i = 0; i < list.Count; i++)
             {
-                Console.SetCursorPosition((Console.WindowWidth - list[i].Length) / 2, ((Console.WindowHeight - (list.Count)) / 2) + i);
                 Console.WriteLine(list[i]);
             }
 
