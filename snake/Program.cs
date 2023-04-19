@@ -77,6 +77,8 @@ namespace Snake
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+
             string[] options = { "Start", "New", "Load", "Save",
             "Highscore", "Quit" };
             int selectedIndex = MenuHelper.MultipleChoice(true, options);
