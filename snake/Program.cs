@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Snake
 {
     /// <summary>
@@ -68,6 +70,10 @@ namespace Snake
         /// Tid att frysa skärmen innan game over
         /// </summary>
         static int freezeTime = 1500;
+
+        static string Cow = "🐂";
+        static string Dead = "💀";
+        static string Hand = "👋";
 
         /// <summary>
         /// Huvudmetoden för Program-klassen.
@@ -683,9 +689,26 @@ namespace Snake
                     cell.y = col;
                     cell.visited = false;
                     if (cell.x == 0 || cell.x > gridW - 2 || cell.y == 0 || cell.y > gridH - 2)
+                    {
                         cell.Set("*");
+                    } 
+                    else if (cell.y == 10 && cell.x > 25 && cell.x < 35)
+                    {
+                        cell.Set(Dead);
+                    } 
+                    else if (cell.x == 8 && cell.y > 4 && cell.y < 16)
+                    {
+                        cell.Set(Cow);
+                    } 
+                    else if (cell.y == 18 && cell.x > 22 && cell.x < 35)
+                    {
+                        cell.Set(Cow);
+                    }
                     else
+                    {
                         cell.Clear();
+                    }
+
                     grid[col, row] = cell;
                 }
             }
