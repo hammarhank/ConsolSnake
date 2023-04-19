@@ -10,9 +10,9 @@ namespace Snake
     {
         public static int MultipleChoice(bool canBeCanceled, string[] options)
         {
-            const int startX = 10;
+            const int startX = 19;
             const int startY = 20;
-            const int optionsPerLine = 3;
+            const int optionsPerLine = 2;
             const int spacingPerLine = 14;
 
             int currentSelection = 0;
