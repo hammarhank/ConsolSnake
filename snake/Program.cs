@@ -689,15 +689,15 @@ namespace Snake
                     {
                         cell.Set("*");
                     } 
-                    else if (level == 10 && cell.y == 10 && cell.x > 25 && cell.x < 35)
+                    else if (level >= 10 && cell.y == 10 && cell.x > 25 && cell.x < 35)
                     {
                         cell.Set("*");
                     } 
-                    else if (level == 20 && cell.x == 8 && cell.y > 4 && cell.y < 16)
+                    else if (level >= 20 && cell.x == 8 && cell.y > 4 && cell.y < 16)
                     {
                         cell.Set("*");
                     } 
-                    else if (level == 30 && cell.y == 18 && cell.x > 22 && cell.x < 35)
+                    else if (level >= 30 && cell.y == 18 && cell.x > 22 && cell.x < 35)
                     {
                         cell.Set("*");
                     }
