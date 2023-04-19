@@ -44,7 +44,6 @@ namespace Snake
         /// <summary>
         /// Spelets hastighet
         /// </summary>
-        //Tog bort readonly så att man kan öka hastigheten med increaseLevel
         static int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
