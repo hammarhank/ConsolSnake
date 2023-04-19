@@ -42,7 +42,8 @@ namespace Snake
         /// <summary>
         /// Spelets hastighet
         /// </summary>
-        static readonly int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
+        //Tog bort readonly så att man kan öka hastigheten med increaseLevel
+        static int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
         /// <summary>
         /// Om rutnätet är befolkat med objekt eller inte.
         /// </summary>
@@ -59,7 +60,9 @@ namespace Snake
         /// Game poäng
         /// </summary>
         static int points = 0;
-
+        /// <summary>
+        /// Svårighetsgraden på spelet.
+        /// </summary>
         static int level = 1;
         /// <summary>
         /// Tid att frysa skärmen innan game over
@@ -131,6 +134,8 @@ namespace Snake
                 FoodCount = 0;
                 BombCount = 0;
                 snakeLength = 5;
+                speed = 100;
+                level = 1;
                 populateGrid();
                 currentCell = grid[(int)Math.Ceiling((double)gridH / 2), (int)Math.Ceiling((double)gridW / 2)];
                 updatePos();
@@ -158,6 +163,7 @@ namespace Snake
             printGrid();
             Console.WriteLine($"Length: {snakeLength}");
             Console.WriteLine($"Points: {points}");
+            Console.WriteLine($"Level: {level}      FoodCount: {FoodCount}");
         }
         /// <summary>
         /// Tar emot spelarens input för att styra ormen.
@@ -298,6 +304,19 @@ namespace Snake
                     break;
             }
         }
+        //TODO: Gör så att när foodcount % 10 = 0, level = level + 1
+        //Använder foodcount, som blir +1 för varje matbit man tar nere i 'eatFood'.
+        //Lägger till en till bomb och en av varje väggtyp. Ökar hastigheten med -10. (100 är bashastighet).
+        static void increaseLevel()
+        {
+            level = level + 1;
+            addBomb();
+            addWallH();
+            addWallV();
+            addWallDiagR();
+            addWallDiagL();
+            speed = speed - 10;
+        }
         /// <summary>
         /// Lägger till mat i en slumpmässig ledig cell på rutnätet.
         /// </summary>
@@ -317,18 +336,25 @@ namespace Snake
         }
         /// <summary>
         /// Ökar ormens längd och lägger till mer mat på rutnätet.
+        /// Kollar även antalet matbitar man tagit. Om det antalet % 10 == 0, ökar svårighetsgraden.
         /// </summary>
         static void eatFood()
         {
+            //Ska man öka level före eller efter att man tar biten som ökar svårighetsgraden?
             points += 1 * level;
             snakeLength += 1;
+            //FoodCount används för att öka level med 1 varje gång man tar 10 matbitar.
+            FoodCount = FoodCount + 1;
+            //Satte 'maxvärde' på 50, så att level endast kan öka 5 gånger.
+            if (FoodCount % 10 == 0 && FoodCount <= 50)
+            {
+                increaseLevel();
+            }
             if (points == 1)
             {
                 addBomb();
             }
-            //TODO: Poängvariabel ska bli +1
             addFood();
-            addWall();
         }
         /// <summary>
         /// Lägger till en bomb i en slumpmässig ledig cell på rutnätet.
@@ -348,31 +374,168 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Ska öka längden men sänka poängen.
+        /// Sänka spelarens poäng, men inte längden är samma som innan.
         /// </summary>
         //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90.
         static void eatBomb()
         {
-            points -= 1;
+            //Ökade antalet poäng man förlorar nu när levels finns. Annars förlorade man alltid 1 poäng.
+            points -= 1*level;
             if (points != 0)
             {
                 addBomb();
             }
         }
         /// <summary>
-        /// Lägger till en "vägg" (är ju bara en del). Används varje gång man äter mat.
-        //TODO: Gör så att addWall körs när nivån ökar. Den körs när man äter mat än så länge.
+        /// Lägger till en horisontell "vägg". Används varje gång man äter mat.
+        /// Väggen genereras som en punkt, och sedan läggs * till åt höger tills den når maxlängd eller en cell som inte är tom.
         /// </summary>
-        static void addWall()
+        //TODO: Gör så att addWallH körs när nivån ökar. Den körs när man äter mat än så länge.
+        static void addWallH()
         {
             Random r = new Random();
             Cell cell;
+            //Börjar som 1, för cell = grid[x, y + wallLength] i while loopen.
+            int wallLength = 1;
             while (true)
             {
-                cell = grid[r.Next(grid.GetLength(0)), r.Next(grid.GetLength(1))];
+                //OBS: 'x' är den vertikala axeln, y är horisontell.
+                int x = r.Next(grid.GetLength(0));
+                int y = r.Next(grid.GetLength(1));
+                cell = grid[x, y];
                 if (cell.val == " ")
                 {
                     cell.val = "*";
+                    //Kan ändra 5 till en högre siffra för att få längre väggar.
+                    while (wallLength < 5)
+                    {
+                        cell = grid[x, y + wallLength];
+                        if (cell.val == " ")
+                        {
+                            cell.val = "*";
+                            wallLength = wallLength + 1;
+                        }
+                        //else satsen ser till att programmet inte kraschar, genom att försöka göra * utanför arrayen.
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Kopia av 'addWallH', fast med några ändrade värden.
+        /// Lägger till en vertikal "vägg". Används varje gång man äter mat.
+        /// Väggen genereras som en punkt, och sedan läggs * till neråt tills den når maxlängd eller en cell som inte är tom.
+        /// </summary>
+        //TODO: Gör så att addWallV körs när nivån ökar. Den körs när man äter mat än så länge.
+        //Är en kopia av addWallH, kolla den för kommentarer.
+        static void addWallV()
+        {
+            Random r = new Random();
+            Cell cell;
+            int wallLength = 1;
+            while (true)
+            {
+                //OBS: 'x' är den vertikala axeln, y är horisontell.
+                int x = r.Next(grid.GetLength(0));
+                int y = r.Next(grid.GetLength(1));
+                cell = grid[x, y];
+                if (cell.val == " ")
+                {
+                    cell.val = "*";
+                    //Satte den som 3 eftersom planen är längre horisontell än vertikal.
+                    while (wallLength < 3)
+                    {
+                        cell = grid[x + wallLength, y];
+                        if (cell.val == " ")
+                        {
+                            cell.val = "*";
+                            wallLength = wallLength + 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Lägger till en diagonal "vägg". Används varje gång man äter mat.
+        /// Väggen genereras som en punkt, och sedan läggs * till diagonalt upp åt höger tills den når maxlängd eller en cell som inte är tom.
+        /// </summary>
+        //TODO: Gör så att addWallDiagR körs när nivån ökar. Den körs när man äter mat än så länge.
+        static void addWallDiagR()
+        {
+            Random r = new Random();
+            Cell cell;
+            int wallLength = 1;
+            while (true)
+            {
+                //OBS: 'x' är den vertikala axeln, y är horisontell.
+                int x = r.Next(grid.GetLength(0));
+                int y = r.Next(grid.GetLength(1));
+                cell = grid[x, y];
+                if (cell.val == " ")
+                {
+                    cell.val = "*";
+                    while (wallLength < 4)
+                    {
+                        //Kör man x - wallLength så tas man 'uppåt' på spelplanen.
+                        //Kom ihåg att x är vertikal och y horisontell!
+                        cell = grid[x - wallLength, y + wallLength];
+                        if (cell.val == " ")
+                        {
+                            cell.val = "*";
+                            wallLength = wallLength + 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Är en kopia av addWallDiagR, 'inverterad'.
+        /// Lägger till en diagonal "vägg". Används varje gång man äter mat.
+        /// Väggen genereras som en punkt, och sedan läggs * till diagonalt neråt åt vänster tills den når maxlängd eller en cell som inte är tom.
+        /// </summary>
+        //TODO: Gör så att addWallDiagL körs när nivån ökar. Den körs när man äter mat än så länge.
+        static void addWallDiagL()
+        {
+            Random r = new Random();
+            Cell cell;
+            int wallLength = 1;
+            while (true)
+            {
+                //OBS: 'x' är den vertikala axeln, y är horisontell.
+                int x = r.Next(grid.GetLength(0));
+                int y = r.Next(grid.GetLength(1));
+                cell = grid[x, y];
+                if (cell.val == " ")
+                {
+                    cell.val = "*";
+                    while (wallLength < 4)
+                    {
+                        //y - wallLength gör så att väggen genereras snett neråt åt vänster.
+                        cell = grid[x - wallLength, y - wallLength];
+                        if (cell.val == " ")
+                        {
+                            cell.val = "*";
+                            wallLength = wallLength + 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     break;
                 }
             }
