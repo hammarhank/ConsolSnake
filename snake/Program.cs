@@ -74,10 +74,15 @@ namespace Snake
         static void Main(string[] args)
         {
             string[] options = { "Start", "New", "Load", "Save",
-            "Highscore", "Foo", "Bar", "FooBar", "etc." };
+            "Highscore", "Quit" };
             int selectedIndex = MenuHelper.MultipleChoice(true, options);
 
             Console.Clear();
+
+            if (selectedIndex < 0)
+            {
+                Environment.Exit(0);
+            }
 
             // FIXME: Om man trycker på ecape i menyn kastas IndexOutOfRangeException
             string command = options[selectedIndex];
@@ -86,9 +91,33 @@ namespace Snake
             {
                 Start();
             }
+            else if (command == options[1])
+            {
+                Console.WriteLine("New: NYI"); // NYI: Implementera New funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
+            else if (command == options[2])
+            {
+                Console.WriteLine("Load: NYI"); // NYI: Implementera Load funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
+            else if (command == options[3])
+            {
+                Console.WriteLine("Save: NYI"); // NYI: Implementera Save funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
             else if (command == options[4])
             {
                 showHighScores();
+            }
+            else if (command == options[5])
+            {
+                Console.Clear();
+                Console.WriteLine("Good Bye");
+                Environment.Exit(0);
             }
         }
         /// <summary>
@@ -219,7 +248,7 @@ namespace Snake
         /// Visar highscore
         /// </summary>
         static void showHighScores()
-        { //FIXME: highscore beter sig konstigt. visar endast 2 högst upp. den som är yhögst up visas inte
+        {
             Console.Clear();
             Console.WriteLine("High Scores:");
             Console.WriteLine("=============");
