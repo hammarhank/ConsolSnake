@@ -115,7 +115,9 @@ namespace Snake
             }
             else if (command == options[5])
             {
+                Console.Clear();
                 Console.WriteLine("Good Bye");
+                Environment.Exit(0);
             }
         }
         /// <summary>
