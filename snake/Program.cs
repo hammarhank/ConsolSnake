@@ -91,6 +91,32 @@ namespace Snake
             {
                 Start();
             }
+            else if (command == options[1])
+            {
+                Console.WriteLine("New: NYI"); // NYI: Implementera New funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
+            else if (command == options[2])
+            {
+                Console.WriteLine("Load: NYI"); // NYI: Implementera Load funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
+            else if (command == options[3])
+            {
+                Console.WriteLine("Save: NYI"); // NYI: Implementera Save funktionen
+                Thread.Sleep(3000);
+                Main(args);
+            }
+            else if (command == options[4])
+            {
+                showHighScores();
+            }
+            else if (command == options[5])
+            {
+                Console.WriteLine("Good Bye");
+            }
         }
         /// <summary>
         /// Startar spelet
