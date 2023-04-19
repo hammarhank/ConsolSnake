@@ -220,6 +220,7 @@
         /// </summary>
         static void showHighScores()
         { //FIXME: highscore beter sig konstigt. visar endast 2 högst upp. den som är yhögst up visas inte
+
             Console.Clear();
             Console.WriteLine("High Scores:");
             Console.WriteLine("=============");
