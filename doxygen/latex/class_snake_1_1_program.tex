@@ -1,0 +1,299 @@
+\hypertarget{class_snake_1_1_program}{}\doxysection{Snake.\+Program Class Reference}
+\label{class_snake_1_1_program}\index{Snake.Program@{Snake.Program}}
+
+
+Program-\/klassen innehåller huvudmetoden och spelets logik.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}
+\begin{DoxyCompactList}\small\item\em Cell-\/klassen används för att skapa varje \textquotesingle{}ruta\textquotesingle{} på spelplanen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} \mbox{\hyperlink{class_snake_1_1_program_a9bf71b025af684ff2d1d61051b07fdda}{Editor}} ()
+\begin{DoxyCompactList}\small\item\em En editor för nya arenor för spelet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_a420e20944547ae0d4ccefc69b88e52b3}{Main}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em Standardmetoden som kör programmet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a3e2c8efdafb0ad35560ff7d624340948}\label{class_snake_1_1_program_a3e2c8efdafb0ad35560ff7d624340948}} 
+static void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Startar spelet med \textquotesingle{}populate\+Grid\textquotesingle{} och \textquotesingle{}Set\+Game\+Variables\textquotesingle{} metoderna. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a3f7e21a88884b6c80e48f13732b6192a}\label{class_snake_1_1_program_a3f7e21a88884b6c80e48f13732b6192a}} 
+static void {\bfseries Set\+Game\+Variables} ()
+\begin{DoxyCompactList}\small\item\em Sätter variabelvärden till deras \textquotesingle{}standard\textquotesingle{} när man startar ett nytt spel. Annars behålls variabelvärdena mellan omgångar.. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_aa804a4568253bce14c28540557a1009c}\label{class_snake_1_1_program_aa804a4568253bce14c28540557a1009c}} 
+static void {\bfseries Restart} ()
+\begin{DoxyCompactList}\small\item\em Har ett förvirrande namn. Startar inte om spelet, utan ser till att uppdatera konsoloutputen med \textquotesingle{}update\+Screen\textquotesingle{} och ta emot input med \textquotesingle{}get\+Input\textquotesingle{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a1fe5ef96852f4ab299b4486617858b6b}\label{class_snake_1_1_program_a1fe5ef96852f4ab299b4486617858b6b}} 
+static void {\bfseries update\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Skriver ut ormens nya position, och på så sätt simulerar rörelse. Skriver också ut vissa variabelvärden som poäng och ormens längd. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ac6a55ffaed51167e2f0f024986f79a0f}\label{class_snake_1_1_program_ac6a55ffaed51167e2f0f024986f79a0f}} 
+static void {\bfseries get\+Input} ()
+\begin{DoxyCompactList}\small\item\em Tar emot spelarens input för att styra ormen. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_aed5e30c0346b720a4ba3205df3700754}{check\+Cell}} (\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}} cell)
+\begin{DoxyCompactList}\small\item\em Kollar vad som ligger i cellen framför ormens huvud. \% = mat, B = bomb, $\ast$ = vägg, pilar = ormens kropp. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a7898982f979a40148f068afb12b8aefe}\label{class_snake_1_1_program_a7898982f979a40148f068afb12b8aefe}} 
+static void {\bfseries Lose} ()
+\begin{DoxyCompactList}\small\item\em Hanterar förlust. Startar om genom att köra \textquotesingle{}Main\textquotesingle{} igen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_aa0f15c2dbda999417f9039793abad5ea}\label{class_snake_1_1_program_aa0f15c2dbda999417f9039793abad5ea}} 
+static void {\bfseries add\+High\+Score} ()
+\begin{DoxyCompactList}\small\item\em Sparar highscore till highscore.\+txt. Om filen inte finns skapas den. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_aa2546b2af40680336d35e6b51707bf21}\label{class_snake_1_1_program_aa2546b2af40680336d35e6b51707bf21}} 
+static void {\bfseries show\+High\+Scores} ()
+\begin{DoxyCompactList}\small\item\em Visar highscore genom att läsa från highscore.\+txt. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_abaa955f7c9fc5dcf59b32ba01769a2db}{do\+Input}} (Console\+Key inp)
+\begin{DoxyCompactList}\small\item\em Låter spelaren styra ormen i fyra riktningar med antingen WASD eller piltangenterna. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a85fedeebbcc2c642b7711ebafded92d6}\label{class_snake_1_1_program_a85fedeebbcc2c642b7711ebafded92d6}} 
+static void {\bfseries increase\+Level} ()
+\begin{DoxyCompactList}\small\item\em Körs av \textquotesingle{}eat\+Food\textquotesingle{} när \textquotesingle{}foodcount\textquotesingle{} \% 10 = 0. Detta gör så att det läggs ut fler hinder och hastigheten ökar varje gång spelaren tar 10 matbitar. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a8738edc69bd965ece5aaa09e3989ec7e}\label{class_snake_1_1_program_a8738edc69bd965ece5aaa09e3989ec7e}} 
+static void {\bfseries add\+Food} ()
+\begin{DoxyCompactList}\small\item\em Lägger till mat i en slumpmässig ledig cell på rutnätet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_aa8adb5ee8f0542cc289d787b839101a3}\label{class_snake_1_1_program_aa8adb5ee8f0542cc289d787b839101a3}} 
+static void {\bfseries eat\+Food} ()
+\begin{DoxyCompactList}\small\item\em Ökar ormens längd och lägger till mer mat på rutnätet. Kollar även antalet matbitar man tagit. Om det antalet \% 10 == 0, körs \textquotesingle{}increase\+Level\textquotesingle{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_adc025ba098c61a05a98d719af968e952}\label{class_snake_1_1_program_adc025ba098c61a05a98d719af968e952}} 
+static void {\bfseries add\+Bomb} ()
+\begin{DoxyCompactList}\small\item\em Lägger till en bomb i en slumpmässig ledig cell på rutnätet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ab38d596bdcc6569b2771b3aab600bc11}\label{class_snake_1_1_program_ab38d596bdcc6569b2771b3aab600bc11}} 
+static void {\bfseries eat\+Bomb} ()
+\begin{DoxyCompactList}\small\item\em Sänker spelarens poäng med 1 $\ast$ level och lägger ut en ny bomb på spelplanen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a41dbafb745250e586f3d2e05d127f9ad}\label{class_snake_1_1_program_a41dbafb745250e586f3d2e05d127f9ad}} 
+static void {\bfseries add\+WallH} ()
+\begin{DoxyCompactList}\small\item\em Lägger till en horisontell \char`\"{}vägg\char`\"{}. Används i \textquotesingle{}increase\+Level\textquotesingle{}. Väggen genereras som en punkt, och sedan läggs $\ast$ till åt höger tills den når maxlängd eller en cell som inte är tom. OBS\+: \textquotesingle{}x\textquotesingle{} är den vertikala axeln, \textquotesingle{}y\textquotesingle{} är horisontell. Detta gäller för alla \textquotesingle{}add\+WallX\textquotesingle{} metoder. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_afa8e02bdbd329253c76182696191f614}\label{class_snake_1_1_program_afa8e02bdbd329253c76182696191f614}} 
+static void {\bfseries add\+WallV} ()
+\begin{DoxyCompactList}\small\item\em Kopia av \textquotesingle{}add\+WallH\textquotesingle{}, fast med några ändrade värden. Lägger till en vertikal \char`\"{}vägg\char`\"{}. Väggen genereras som en punkt, och sedan läggs $\ast$ till neråt tills den når maxlängd eller en cell som inte är tom. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a3db7b3c240e6d8844b14cf5fbed740c5}\label{class_snake_1_1_program_a3db7b3c240e6d8844b14cf5fbed740c5}} 
+static void {\bfseries add\+Wall\+DiagR} ()
+\begin{DoxyCompactList}\small\item\em Lägger till en diagonal \char`\"{}vägg\char`\"{}. Väggen genereras som en punkt, och sedan läggs $\ast$ till diagonalt upp åt höger tills den når maxlängd eller en cell som inte är tom. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ab488ded0343c768212dc2a15f0c708e6}\label{class_snake_1_1_program_ab488ded0343c768212dc2a15f0c708e6}} 
+static void {\bfseries add\+Wall\+DiagL} ()
+\begin{DoxyCompactList}\small\item\em Är en kopia av add\+Wall\+DiagR, \textquotesingle{}inverterad\textquotesingle{}. Lägger till en diagonal \char`\"{}vägg\char`\"{}. Väggen genereras som en punkt, och sedan läggs $\ast$ till diagonalt neråt åt vänster tills den når maxlängd eller en cell som inte är tom. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a234755666b703dc3e37afb42ecd22d71}\label{class_snake_1_1_program_a234755666b703dc3e37afb42ecd22d71}} 
+static void {\bfseries go\+Up} ()
+\begin{DoxyCompactList}\small\item\em Ändrar ormens riktning till upp. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a4785b758b3e4daac47fe0509cfa30a03}\label{class_snake_1_1_program_a4785b758b3e4daac47fe0509cfa30a03}} 
+static void {\bfseries go\+Right} ()
+\begin{DoxyCompactList}\small\item\em Ändrar ormens riktning till höger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a38b95d8c3d6d2c71898222229370f61e}\label{class_snake_1_1_program_a38b95d8c3d6d2c71898222229370f61e}} 
+static void {\bfseries go\+Down} ()
+\begin{DoxyCompactList}\small\item\em Ändrar ormens riktning till ner. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a3ba85817bba6bf7ec50880b668f791f6}\label{class_snake_1_1_program_a3ba85817bba6bf7ec50880b668f791f6}} 
+static void {\bfseries go\+Left} ()
+\begin{DoxyCompactList}\small\item\em Ändrar ormens riktning till vänster. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a1531624650fac49533873ddddf1647fb}\label{class_snake_1_1_program_a1531624650fac49533873ddddf1647fb}} 
+static void {\bfseries Move} ()
+\begin{DoxyCompactList}\small\item\em Flyttar ormen i den aktuella riktningen och hanterar kollisioner med \textquotesingle{}visit\+Cell\textquotesingle{}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_aa74f81da4058686f3614c56219bdb0a3}{visit\+Cell}} (\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}} cell)
+\begin{DoxyCompactList}\small\item\em Märker den givna cellen som \textquotesingle{}visited\textquotesingle{} och uppdaterar ormens position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a6d463711f17e80dc94065be50833ac6e}\label{class_snake_1_1_program_a6d463711f17e80dc94065be50833ac6e}} 
+static void {\bfseries update\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Uppdaterar ormens position och riktning. Ormens huvud är . \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a8100867cc835b6522d115880b89aab23}\label{class_snake_1_1_program_a8100867cc835b6522d115880b89aab23}} 
+static void {\bfseries populate\+Grid} ()
+\begin{DoxyCompactList}\small\item\em Skapar spelplanen genom att sätta värden i arrayen \textquotesingle{}grid\textquotesingle{} som bestämmer vart $\ast$ ska vara.. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ad1838952a9ebca075c48b0b4f325e676}\label{class_snake_1_1_program_ad1838952a9ebca075c48b0b4f325e676}} 
+static void {\bfseries print\+Grid} ()
+\begin{DoxyCompactList}\small\item\em Skriver ut spelplanen på skärmen. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_a14edce5acbd523a4c300808259483838}{draw\+Grid}} (\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} edit\+Grid, int x, int y)
+\begin{DoxyCompactList}\small\item\em Skriver ut editorn. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_snake_1_1_program_a5899569f267170bf15bc12a22a35075b}{Edit\+Save}} (\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} edit\+Grid)
+\begin{DoxyCompactList}\small\item\em Spara den ändrade Cell objektet i en text fil. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} \mbox{\hyperlink{class_snake_1_1_program_ab521b5973be475670533be990cc729d9}{Load\+From\+File}} (string file\+Name)
+\begin{DoxyCompactList}\small\item\em Ladda in ett Cell objekt from en text fil. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly int \mbox{\hyperlink{class_snake_1_1_program_af1dd10ac5094d9b09a6f2c1f3f06bb70}{gridW}} = 90
+\begin{DoxyCompactList}\small\item\em Bredden på spelplanen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a638b0bb1b3431e16945f32ad6bd9b093}\label{class_snake_1_1_program_a638b0bb1b3431e16945f32ad6bd9b093}} 
+static readonly int {\bfseries gridH} = 25
+\begin{DoxyCompactList}\small\item\em Höjden på spelplanen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_acb17e64e72d4432a5628640b32625bd1}\label{class_snake_1_1_program_acb17e64e72d4432a5628640b32625bd1}} 
+static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} {\bfseries grid} = new \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[}\mbox{\hyperlink{class_snake_1_1_program_a638b0bb1b3431e16945f32ad6bd9b093}{gridH}}, \mbox{\hyperlink{class_snake_1_1_program_af1dd10ac5094d9b09a6f2c1f3f06bb70}{gridW}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Spelplanen är strukturerad som en array. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_abfa86138dc64a1c31b2bdfb2ea0da56d}\label{class_snake_1_1_program_abfa86138dc64a1c31b2bdfb2ea0da56d}} 
+static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}} {\bfseries current\+Cell}
+\begin{DoxyCompactList}\small\item\em Den nuvarande cellen där ormen befinner sig. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_af541694189887d2457169b5c56e2ed1d}\label{class_snake_1_1_program_af541694189887d2457169b5c56e2ed1d}} 
+static int {\bfseries Food\+Count}
+\begin{DoxyCompactList}\small\item\em Räknare för hur många matbitar som har ätits. Används i metoden \textquotesingle{}eat\+Food\textquotesingle{} för att öka svårighetsgraden. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a4d7974e8e47e39fb70bc45cda6bcb525}\label{class_snake_1_1_program_a4d7974e8e47e39fb70bc45cda6bcb525}} 
+static int {\bfseries direction}
+\begin{DoxyCompactList}\small\item\em Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a070fe344e8a36a6351d9b81bbbf133dd}\label{class_snake_1_1_program_a070fe344e8a36a6351d9b81bbbf133dd}} 
+static int {\bfseries speed} = 100
+\begin{DoxyCompactList}\small\item\em Spelets hastighet. Lägre siffra gör spelet snabbare. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a0e09c60d8a98d5a144af0f328859e75f}\label{class_snake_1_1_program_a0e09c60d8a98d5a144af0f328859e75f}} 
+static bool {\bfseries Populated} = false
+\begin{DoxyCompactList}\small\item\em Kollar om rutnätet är befolkat med objekt eller inte. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ab4efe6113879937b6f920eaeb80b5550}\label{class_snake_1_1_program_ab4efe6113879937b6f920eaeb80b5550}} 
+static bool {\bfseries Lost} = false
+\begin{DoxyCompactList}\small\item\em Kollar om spelaren har förlorat eller inte. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_a6bb355917063dcb3eb15b4cdcb86a6e9}\label{class_snake_1_1_program_a6bb355917063dcb3eb15b4cdcb86a6e9}} 
+static int {\bfseries snake\+Length}
+\begin{DoxyCompactList}\small\item\em Ormens längd. 1 längd = 1 ruta på spelplanen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_aa3b2a45016204f0cc50975ab6575b8b7}\label{class_snake_1_1_program_aa3b2a45016204f0cc50975ab6575b8b7}} 
+static int {\bfseries points} = 0
+\begin{DoxyCompactList}\small\item\em Poängsumman. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ad597d92d00db0132dd87c79131a613d9}\label{class_snake_1_1_program_ad597d92d00db0132dd87c79131a613d9}} 
+static int {\bfseries level} = 1
+\begin{DoxyCompactList}\small\item\em Används för att öka svårighetsgraden på spelet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_snake_1_1_program_ae299ed610ffd8b29e1d4334c3e5723e0}\label{class_snake_1_1_program_ae299ed610ffd8b29e1d4334c3e5723e0}} 
+static int {\bfseries freeze\+Time} = 1500
+\begin{DoxyCompactList}\small\item\em Tiden som skärmen är fryst innan game over. Högre siffra ger längre frystid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Program-\/klassen innehåller huvudmetoden och spelets logik. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_snake_1_1_program_aed5e30c0346b720a4ba3205df3700754}\label{class_snake_1_1_program_aed5e30c0346b720a4ba3205df3700754}} 
+\index{Snake.Program@{Snake.Program}!checkCell@{checkCell}}
+\index{checkCell@{checkCell}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{checkCell()}{checkCell()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+check\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Kollar vad som ligger i cellen framför ormens huvud. \% = mat, B = bomb, $\ast$ = vägg, pilar = ormens kropp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell} & Cellen som ska kontrolleras.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_snake_1_1_program_abaa955f7c9fc5dcf59b32ba01769a2db}\label{class_snake_1_1_program_abaa955f7c9fc5dcf59b32ba01769a2db}} 
+\index{Snake.Program@{Snake.Program}!doInput@{doInput}}
+\index{doInput@{doInput}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{doInput()}{doInput()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+do\+Input (\begin{DoxyParamCaption}\item[{Console\+Key}]{inp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Låter spelaren styra ormen i fyra riktningar med antingen WASD eller piltangenterna. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inp} & Spelarens input.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_snake_1_1_program_a14edce5acbd523a4c300808259483838}\label{class_snake_1_1_program_a14edce5acbd523a4c300808259483838}} 
+\index{Snake.Program@{Snake.Program}!drawGrid@{drawGrid}}
+\index{drawGrid@{drawGrid}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{drawGrid()}{drawGrid()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+draw\+Grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}}]{edit\+Grid\mbox{[},\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Skriver ut editorn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edit\+Grid} & Dell objekt\\
+\hline
+{\em x} & Vilken rad som ska ändras\\
+\hline
+{\em y} & Vilken kolumn som ska ändras\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_snake_1_1_program_a9bf71b025af684ff2d1d61051b07fdda}\label{class_snake_1_1_program_a9bf71b025af684ff2d1d61051b07fdda}} 
+\index{Snake.Program@{Snake.Program}!Editor@{Editor}}
+\index{Editor@{Editor}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{Editor()}{Editor()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} Snake.\+Program.\+Editor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+En editor för nya arenor för spelet. 
+
+\begin{DoxyReturn}{Returns}
+Returnerar ett Cell object
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_snake_1_1_program_a5899569f267170bf15bc12a22a35075b}\label{class_snake_1_1_program_a5899569f267170bf15bc12a22a35075b}} 
+\index{Snake.Program@{Snake.Program}!EditSave@{EditSave}}
+\index{EditSave@{EditSave}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{EditSave()}{EditSave()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+Edit\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}}]{edit\+Grid\mbox{[},\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Spara den ändrade Cell objektet i en text fil. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edit\+Grid} & Cell objekt\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_snake_1_1_program_ab521b5973be475670533be990cc729d9}\label{class_snake_1_1_program_ab521b5973be475670533be990cc729d9}} 
+\index{Snake.Program@{Snake.Program}!LoadFromFile@{LoadFromFile}}
+\index{LoadFromFile@{LoadFromFile}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{LoadFromFile()}{LoadFromFile()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}\mbox{[},\mbox{]} Snake.\+Program.\+Load\+From\+File (\begin{DoxyParamCaption}\item[{string}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Ladda in ett Cell objekt from en text fil. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & Filens namn utan \char`\"{}.\+jason\char`\"{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returnerar ett cell objekt
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_snake_1_1_program_a420e20944547ae0d4ccefc69b88e52b3}\label{class_snake_1_1_program_a420e20944547ae0d4ccefc69b88e52b3}} 
+\index{Snake.Program@{Snake.Program}!Main@{Main}}
+\index{Main@{Main}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{Main()}{Main()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+Main (\begin{DoxyParamCaption}\item[{string\mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Standardmetoden som kör programmet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Argument för kommandoraden.\\
+\hline
+\end{DoxyParams}
+Alternativen för startmenyn läggs i en array. \textquotesingle{}Menu\+Helper\textquotesingle{} klassen används sedan för att hantera menyvalet.\mbox{\Hypertarget{class_snake_1_1_program_aa74f81da4058686f3614c56219bdb0a3}\label{class_snake_1_1_program_aa74f81da4058686f3614c56219bdb0a3}} 
+\index{Snake.Program@{Snake.Program}!visitCell@{visitCell}}
+\index{visitCell@{visitCell}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{visitCell()}{visitCell()}}
+{\footnotesize\ttfamily static void Snake.\+Program.\+visit\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_snake_1_1_program_1_1_cell}{Cell}}}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Märker den givna cellen som \textquotesingle{}visited\textquotesingle{} och uppdaterar ormens position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell} & Cellen som har åkts in i.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_snake_1_1_program_af1dd10ac5094d9b09a6f2c1f3f06bb70}\label{class_snake_1_1_program_af1dd10ac5094d9b09a6f2c1f3f06bb70}} 
+\index{Snake.Program@{Snake.Program}!gridW@{gridW}}
+\index{gridW@{gridW}!Snake.Program@{Snake.Program}}
+\doxysubsubsection{\texorpdfstring{gridW}{gridW}}
+{\footnotesize\ttfamily readonly int Snake.\+Program.\+gridW = 90\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Bredden på spelplanen. 
+
+/// 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+snake/Program.\+cs\end{DoxyCompactItemize}

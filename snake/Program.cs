@@ -9,17 +9,16 @@ namespace Snake
     /// </summary>
     class Program
     {
-
         ///  /// <summary>
-        /// Bredden på rutnätet.
+        /// Bredden på spelplanen.
         /// </summary>
         static readonly int gridW = 90;
         /// <summary>
-        /// Höjden på rutnätet.
+        /// Höjden på spelplanen.
         /// </summary>
         static readonly int gridH = 25;
         /// <summary>
-        /// Rutnätet där spelet utspelas.
+        /// Spelplanen är strukturerad som en array.
         /// </summary>
         static Cell[,] grid = new Cell[gridH, gridW];
         /// <summary>
@@ -27,58 +26,50 @@ namespace Snake
         /// </summary>
         static Cell currentCell;
         /// <summary>
-        /// Den cell som innehåller mat för ormen.
-        /// </summary>
-        //TBD: food är oanvänd
-        static Cell food;
-        /// <summary>
-        /// Räknare för hur mycket mat som har ätits.
+        /// Räknare för hur många matbitar som har ätits. Används i metoden 'eatFood' för att öka svårighetsgraden.
         /// </summary>
         static int FoodCount;
         /// <summary>
-        /// Räknare för hur många bomber ätits. Används för att räkna ut antalet poäng man har.
-        /// </summary>
-        static int BombCount;
-        /// <summary>
         /// Riktning för ormens rörelse. 0 = Upp, 1 = Höger, 2 = Ner, 3 = Vänster.
         /// </summary>
-        static int direction; //0=Up 1=Right 2=Down 3=Left
+        static int direction;
         /// <summary>
-        /// Spelets hastighet
+        /// Spelets hastighet. Lägre siffra gör spelet snabbare.
         /// </summary>
-        static int speed = 100; // TBD: Bör vara en double så man kan fininställa hastighet
+        static int speed = 100;
         /// <summary>
-        /// Om rutnätet är befolkat med objekt eller inte.
+        /// Kollar om rutnätet är befolkat med objekt eller inte.
         /// </summary>
         static bool Populated = false;
         /// <summary>
-        /// Om spelaren har förlorat eller inte.
+        /// Kollar om spelaren har förlorat eller inte.
         /// </summary>
         static bool Lost = false;
         /// <summary>
-        /// Ormens längd.
+        /// Ormens längd. 1 längd = 1 ruta på spelplanen.
         /// </summary>
         static int snakeLength;
         /// <summary>
-        /// Game poäng
+        /// Poängsumman.
         /// </summary>
         static int points = 0;
         /// <summary>
-        /// Svårighetsgraden på spelet.
+        /// Används för att öka svårighetsgraden på spelet.
         /// </summary>
         static int level = 1;
         /// <summary>
-        /// Tid att frysa skärmen innan game over
+        /// Tiden som skärmen är fryst innan game over. Högre siffra ger längre frystid.
         /// </summary>
         static int freezeTime = 1500;
-
         /// <summary>
-        /// Huvudmetoden för Program-klassen.
+        /// Standardmetoden som kör programmet.
         /// </summary>
         /// <param name="args">Argument för kommandoraden.</param>
-
         static void Main(string[] args)
         {
+            /// <summary>
+            /// Alternativen för startmenyn läggs i en array. 'MenuHelper' klassen används sedan för att hantera menyvalet.
+            /// </summary>
             string[] options = { "Start", "New", "Load", "Save",
             "Highscore", "Quit" };
             int selectedIndex = MenuHelper.MultipleChoice(true, options);
@@ -132,7 +123,7 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Startar spelet
+        /// Startar spelet med 'populateGrid' och 'SetGameVariables' metoderna.
         /// </summary>
         static void Start()
         {
@@ -148,11 +139,13 @@ namespace Snake
             }
         }
 
+        /// <summary>
+        /// Sätter variabelvärden till deras 'standard' när man startar ett nytt spel. Annars behålls variabelvärdena mellan omgångar..
+        /// </summary>
         private static void SetGameVariables()
         {
             points = 0;
             FoodCount = 0;
-            BombCount = 0;
             snakeLength = 5;
             speed = 100;
             level = 1;
@@ -162,13 +155,16 @@ namespace Snake
             Populated = true;
         }
 
+        /// <summary>
+        /// Har ett förvirrande namn. Startar inte om spelet, utan ser till att uppdatera konsoloutputen med 'updateScreen' och ta emot input med 'getInput'.
+        /// </summary>
         static void Restart()
         {
             updateScreen();
             getInput();
         }
         /// <summary>
-        /// Uppdaterar skärmen med aktuell rutnät och orm.
+        /// Skriver ut ormens nya position, och på så sätt simulerar rörelse. Skriver också ut vissa variabelvärden som poäng och ormens längd.
         /// </summary>
         static void updateScreen()
         {
@@ -183,7 +179,6 @@ namespace Snake
         /// </summary>
         static void getInput()
         {
-            //Console.Write("Where to move? [WASD] ");
             ConsoleKeyInfo input;
             while (!Console.KeyAvailable)
             {
@@ -195,7 +190,7 @@ namespace Snake
             doInput(input.Key);
         }
         /// <summary>
-        /// Kontrollerar om den givna cellen innehåller mat eller om ormen kolliderar med sig själv.
+        /// Kollar vad som ligger i cellen framför ormens huvud. % = mat, B = bomb, * = vägg, pilar = ormens kropp.
         /// </summary>
         /// <param name="cell">Cellen som ska kontrolleras.</param>
         static void checkCell(Cell cell)
@@ -215,7 +210,7 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Hanterar förlust av spelet och återstartar det.
+        /// Hanterar förlust. Startar om genom att köra 'Main' igen.
         /// </summary>
         static void Lose()
         {
@@ -249,7 +244,7 @@ namespace Snake
             Main(new string[0]);
         }
         /// <summary>
-        /// Sparar highscore till highscore.txt
+        /// Sparar highscore till highscore.txt. Om filen inte finns skapas den.
         /// </summary>
         private static void addHighScore()
         {
@@ -264,7 +259,7 @@ namespace Snake
             else { showHighScores(); }
         }
         /// <summary>
-        /// Visar highscore
+        /// Visar highscore genom att läsa från highscore.txt.
         /// </summary>
         static void showHighScores()
         {
@@ -292,7 +287,7 @@ namespace Snake
             Main(new string[0]);
         }
         /// <summary>
-        /// Utför en åtgärd baserat på spelarens input.
+        /// Låter spelaren styra ormen i fyra riktningar med antingen WASD eller piltangenterna.
         /// </summary>
         /// <param name="inp">Spelarens input.</param>
         static void doInput(ConsoleKey inp)
@@ -317,9 +312,9 @@ namespace Snake
                     break;
             }
         }
-        //TODO: Gör så att när foodcount % 10 = 0, level = level + 1
-        //Använder foodcount, som blir +1 för varje matbit man tar nere i 'eatFood'.
-        //Lägger till en till bomb och en av varje väggtyp. Ökar hastigheten med -10. (100 är bashastighet).
+        /// <summary>
+        /// Körs av 'eatFood' när 'foodcount' % 10 = 0. Detta gör så att det läggs ut fler hinder och hastigheten ökar varje gång spelaren tar 10 matbitar.
+        /// </summary>
         static void increaseLevel()
         {
             level = level + 1;
@@ -349,20 +344,19 @@ namespace Snake
         }
         /// <summary>
         /// Ökar ormens längd och lägger till mer mat på rutnätet.
-        /// Kollar även antalet matbitar man tagit. Om det antalet % 10 == 0, ökar svårighetsgraden.
+        /// Kollar även antalet matbitar man tagit. Om det antalet % 10 == 0, körs 'increaseLevel'.
         /// </summary>
         static void eatFood()
         {
-            //Ska man öka level före eller efter att man tar biten som ökar svårighetsgraden?
             points += 1 * level;
             snakeLength += 1;
-            //FoodCount används för att öka level med 1 varje gång man tar 10 matbitar.
             FoodCount = FoodCount + 1;
-            //Satte 'maxvärde' på 50, så att level endast kan öka 5 gånger.
+            //Satte 'maxvärde' på 50, så att level endast kan öka 5 gånger. 
             if (FoodCount % 10 == 0 && FoodCount <= 50)
             {
                 increaseLevel();
             }
+            //Den första bomben genereras när spelaren får sitt första poäng.
             if (points == 1)
             {
                 addBomb();
@@ -387,12 +381,11 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Sänka spelarens poäng, men inte längden är samma som innan.
+        /// Sänker spelarens poäng med 1 * level och lägger ut en ny bomb på spelplanen.
         /// </summary>
-        //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90.
+        //FIXME: Om man har 10 poäng och äter en bomb ser poängen ut som 90 istället för 9..
         static void eatBomb()
         {
-            //Ökade antalet poäng man förlorar nu när levels finns. Annars förlorade man alltid 1 poäng.
             points -= 1*level;
             if (points != 0)
             {
@@ -400,10 +393,10 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Lägger till en horisontell "vägg". Används varje gång man äter mat.
+        /// Lägger till en horisontell "vägg". Används i 'increaseLevel'.
         /// Väggen genereras som en punkt, och sedan läggs * till åt höger tills den når maxlängd eller en cell som inte är tom.
+        /// OBS: 'x' är den vertikala axeln, 'y' är horisontell. Detta gäller för alla 'addWallX' metoder.
         /// </summary>
-        //TODO: Gör så att addWallH körs när nivån ökar. Den körs när man äter mat än så länge.
         static void addWallH()
         {
             Random r = new Random();
@@ -412,7 +405,6 @@ namespace Snake
             int wallLength = 1;
             while (true)
             {
-                //OBS: 'x' är den vertikala axeln, y är horisontell.
                 int x = r.Next(grid.GetLength(0));
                 int y = r.Next(grid.GetLength(1));
                 cell = grid[x, y];
@@ -440,11 +432,9 @@ namespace Snake
         }
         /// <summary>
         /// Kopia av 'addWallH', fast med några ändrade värden.
-        /// Lägger till en vertikal "vägg". Används varje gång man äter mat.
+        /// Lägger till en vertikal "vägg".
         /// Väggen genereras som en punkt, och sedan läggs * till neråt tills den når maxlängd eller en cell som inte är tom.
         /// </summary>
-        //TODO: Gör så att addWallV körs när nivån ökar. Den körs när man äter mat än så länge.
-        //Är en kopia av addWallH, kolla den för kommentarer.
         static void addWallV()
         {
             Random r = new Random();
@@ -452,7 +442,6 @@ namespace Snake
             int wallLength = 1;
             while (true)
             {
-                //OBS: 'x' är den vertikala axeln, y är horisontell.
                 int x = r.Next(grid.GetLength(0));
                 int y = r.Next(grid.GetLength(1));
                 cell = grid[x, y];
@@ -478,10 +467,9 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Lägger till en diagonal "vägg". Används varje gång man äter mat.
+        /// Lägger till en diagonal "vägg".
         /// Väggen genereras som en punkt, och sedan läggs * till diagonalt upp åt höger tills den når maxlängd eller en cell som inte är tom.
         /// </summary>
-        //TODO: Gör så att addWallDiagR körs när nivån ökar. Den körs när man äter mat än så länge.
         static void addWallDiagR()
         {
             Random r = new Random();
@@ -489,7 +477,6 @@ namespace Snake
             int wallLength = 1;
             while (true)
             {
-                //OBS: 'x' är den vertikala axeln, y är horisontell.
                 int x = r.Next(grid.GetLength(0));
                 int y = r.Next(grid.GetLength(1));
                 cell = grid[x, y];
@@ -499,7 +486,6 @@ namespace Snake
                     while (wallLength < 4)
                     {
                         //Kör man x - wallLength så tas man 'uppåt' på spelplanen.
-                        //Kom ihåg att x är vertikal och y horisontell!
                         cell = grid[x - wallLength, y + wallLength];
                         if (cell.val == " ")
                         {
@@ -517,10 +503,9 @@ namespace Snake
         }
         /// <summary>
         /// Är en kopia av addWallDiagR, 'inverterad'.
-        /// Lägger till en diagonal "vägg". Används varje gång man äter mat.
+        /// Lägger till en diagonal "vägg".
         /// Väggen genereras som en punkt, och sedan läggs * till diagonalt neråt åt vänster tills den når maxlängd eller en cell som inte är tom.
         /// </summary>
-        //TODO: Gör så att addWallDiagL körs när nivån ökar. Den körs när man äter mat än så länge.
         static void addWallDiagL()
         {
             Random r = new Random();
@@ -528,7 +513,6 @@ namespace Snake
             int wallLength = 1;
             while (true)
             {
-                //OBS: 'x' är den vertikala axeln, y är horisontell.
                 int x = r.Next(grid.GetLength(0));
                 int y = r.Next(grid.GetLength(1));
                 cell = grid[x, y];
@@ -590,7 +574,7 @@ namespace Snake
             direction = 3;
         }
         /// <summary>
-        /// Flyttar ormen i den aktuella riktningen och hanterar kollisioner.
+        /// Flyttar ormen i den aktuella riktningen och hanterar kollisioner med 'visitCell'.
         /// </summary>
         static void Move()
         {
@@ -640,9 +624,9 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Märker den givna cellen som besökt och uppdaterar ormens position.
+        /// Märker den givna cellen som 'visited' och uppdaterar ormens position.
         /// </summary>
-        /// <param name="cell">Cellen som ska besökas.</param>
+        /// <param name="cell">Cellen som har åkts in i.</param>
         static void visitCell(Cell cell)
         {
             currentCell.val = "#";
@@ -655,11 +639,10 @@ namespace Snake
             //checkCell(currentCell);
         }
         /// <summary>
-        /// Uppdaterar ormens position och riktning.
+        /// Uppdaterar ormens position och riktning. Ormens huvud är @.
         /// </summary>
         static void updatePos()
         {
-
             currentCell.Set("@");
             if (direction == 0)
             {
@@ -682,7 +665,7 @@ namespace Snake
             return;
         }
         /// <summary>
-        /// Fyller rutnätet med celler och sätter upp spelplanen.
+        /// Skapar spelplanen genom att sätta värden i arrayen 'grid' som bestämmer vart * ska vara..
         /// </summary>
         static void populateGrid()
         {
@@ -709,9 +692,8 @@ namespace Snake
             }
         }
         /// <summary>
-        /// Skriver ut rutnätet på skärmen.
+        /// Skriver ut spelplanen på skärmen.
         /// </summary>
-
         static void printGrid()
         {
             string toPrint = "";
@@ -728,7 +710,7 @@ namespace Snake
             Console.WriteLine(toPrint);
         }
         /// <summary>
-        /// Cell-klassen representerar en cell på rutnätet där spelet utspelas.
+        /// Cell-klassen används för att skapa varje 'ruta' på spelplanen.
         /// </summary>
         public class Cell
         {
@@ -758,6 +740,9 @@ namespace Snake
                 set;
             }
 
+            /// <summary>
+            /// Ser till att celler som ormen eller föremål inte längre ligger i blir tomrum igen.
+            /// </summary>
             public void decaySnake()
             {
                 decay -= 1;
@@ -768,11 +753,17 @@ namespace Snake
                 }
             }
 
+            /// <summary>
+            /// Tömmer en cell på sitt 'val' värde. Används i 'populateGrid'.
+            /// </summary>
             public void Clear()
             {
                 val = " ";
             }
 
+            /// <summary>
+            /// Ger en cell ett nytt 'val' värde.
+            /// </summary>
             public void Set(string newVal)
             {
                 val = newVal;
@@ -782,7 +773,7 @@ namespace Snake
         /// <summary>
         /// En editor för nya arenor för spelet
         /// </summary>
-        /// <returns>EReturnerar ett Cell object</returns>
+        /// <returns>Returnerar ett Cell object</returns>
         public static Cell[,] Editor()
         {
             Cell[,] editGrid = new Cell[gridH, gridW];
