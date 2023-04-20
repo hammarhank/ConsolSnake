@@ -851,7 +851,7 @@ namespace Snake
         }
 
         /// <summary>
-        /// 
+        /// Skriver ut editorn
         /// </summary>
         /// <param name="editGrid">Dell objekt</param>
         /// <param name="x">Vilken rad som ska ändras</param>
