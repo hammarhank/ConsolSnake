@@ -779,7 +779,10 @@ namespace Snake
             }
         }
 
-
+        /// <summary>
+        /// En editor för nya arenor för spelet
+        /// </summary>
+        /// <returns>EReturnerar ett Cell object</returns>
         public static Cell[,] Editor()
         {
             Cell[,] editGrid = new Cell[gridH, gridW];
@@ -847,6 +850,12 @@ namespace Snake
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="editGrid">Dell objekt</param>
+        /// <param name="x">Vilken rad som ska ändras</param>
+        /// <param name="y">Vilken kolumn som ska ändras</param>
         static void drawGrid(Cell[,] editGrid, int x, int y)
         {
             string toPrint = "";
@@ -872,6 +881,10 @@ namespace Snake
             Console.WriteLine("Enter to save");
         }
 
+        /// <summary>
+        /// Spara den ändrade Cell objektet i en text fil
+        /// </summary>
+        /// <param name="editGrid">Cell objekt</param>
         static void EditSave(Cell[,] editGrid)
         {
             Console.Write("Filename: ");
@@ -892,6 +905,11 @@ namespace Snake
             File.WriteAllText(fileName + ".json", jsonString);
         }
 
+        /// <summary>
+        /// Ladda in ett Cell objekt from en text fil
+        /// </summary>
+        /// <param name="fileName">Filens namn utan ".jason"</param>
+        /// <returns>Returnerar ett cell objekt</returns>
         static Cell[,] LoadFromFile(string fileName)
         {
             string jsonString = File.ReadAllText(fileName + ".json");
