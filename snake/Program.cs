@@ -87,7 +87,7 @@ namespace Snake
 
             if (selectedIndex < 0)
             {
-                Environment.Exit(0);
+                Editor();
             }
 
             // FIXME: Om man trycker på ecape i menyn kastas IndexOutOfRangeException
@@ -781,6 +781,94 @@ namespace Snake
             }
         }
 
+
+        public static void Editor()
+        {
+            Cell[,] editGrid = new Cell[gridH, gridW];
+
+            for (int col = 0; col < gridH; col++)
+            {
+                for (int row = 0; row < gridW; row++)
+                {
+                    Cell cell = new Cell();
+                    cell.x = row;
+                    cell.y = col;
+                    cell.visited = false;
+                    if (cell.x == 0 || cell.x > gridW - 2 || cell.y == 0 || cell.y > gridH - 2)
+                    {
+                        cell.Set("*");
+                    }
+
+                    else
+                    {
+                        cell.Clear();
+                    }
+
+                    editGrid[col, row] = cell;
+                }
+            }
+
+
+            int x = 1;
+            int y = 1;
+
+            Console.Clear();
+            DrawGrid(editGrid, x, y);
+
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    y = Math.Max(0, y - 1);
+                }
+                else if (keyInfo.Key == ConsoleKey.DownArrow)
+                {
+                    y = Math.Min(gridH - 1, y + 1);
+                }
+                else if (keyInfo.Key == ConsoleKey.LeftArrow)
+                {
+                    x = Math.Max(0, x - 1);
+                }
+                else if (keyInfo.Key == ConsoleKey.RightArrow)
+                {
+                    x = Math.Min(gridW - 1, x + 1);
+                }
+                else if (keyInfo.Key == ConsoleKey.Spacebar)
+                {
+                    editGrid[y, x].val = "*";
+                }
+                else if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+
+                Console.Clear();
+                DrawGrid(editGrid, x, y);
+            }
+        }
+
+        static void DrawGrid(Cell[,] editGrid, int x, int y)
+        {
+            string toPrint = "";
+            for (int col = 0; col < gridH; col++)
+            {
+                for (int row = 0; row < gridW; row++)
+                {
+                    if (col == y && row == x)
+                    {
+                        toPrint += "+";
+                    }
+                    else
+                    {
+                        toPrint += editGrid[col, row].val;
+                    }
+
+                }
+                toPrint += "\n";
+            }
+            Console.WriteLine(toPrint);
+        }
 
     }
 }
