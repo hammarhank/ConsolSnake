@@ -19,6 +19,7 @@ License
 This game is licensed under the MIT License.
 
 Credits
+
 This game was developed by Amir Hebib,  Mattias Waldehagen, Erik Morén, Hannes Paulsson as part of Agile project mÖlk Software development.
 
 Enjoy playing the Console Snake Game! 🐍
