@@ -1,8 +1,10 @@
 # ConsolSnake
 ConsolSnake
+
 Welcome to our console-based Snake Game! This game was developed as part of a group project and provides a fun and nostalgic gaming experience.
 
 Features
+
 Classic snake game where the player controls a snake and tries to eat food while avoiding collision with the walls or its own body.
 The snake grows longer each time it consumes food, increasing the difficulty of maneuvering.
 Randomly generated food items appear on the game board for the snake to eat.
@@ -16,6 +18,7 @@ To run this game on your local machine, make sure you have the following install
 .NET Framework: The game is implemented using C# and requires the .NET Framework to run.
 
 License
+
 This game is licensed under the MIT License.
 
 Credits
